@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+  POST TEMPLATE — to add a new blog post:
+  1. Copy this file to posts/your-post-slug.html
+  2. Edit the <title>, meta description, the .meta line, the <h1>, and the .article-body content
+  3. Add a matching <a class="post-row"> entry in /blog.html pointing to your new file
+  Keep paths prefixed with ../ since this file lives in /posts/.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Resleeve — Morgan Bennett</title>
+    <meta name="description" content="How a small idea turned into Resleeve — a Python web app that composes album artwork, tracklists and runtime into a downloadable wallpaper.">
+    <meta name="theme-color" content="#f0ebe8">
+    <link rel="canonical" href="https://marsphobos.com/posts/building-resleeve.html">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Building Resleeve: turning albums into wallpapers">
+    <meta property="og:description" content="A build log on Resleeve — turning album metadata into a clean poster-style wallpaper.">
+    <meta property="og:url" content="https://marsphobos.com/posts/building-resleeve.html">
+    <meta property="og:image" content="https://marsphobos.com/banner.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body id="top">
+
+<header class="site-header" id="header">
+    <div class="container nav">
+        <a href="../index.html" class="brand">Morgan Bennett</a>
+        <nav class="nav-links" id="navLinks" aria-label="Primary">
+            <a href="../projects.html">Projects</a>
+            <a href="../blog.html" aria-current="page">Blog</a>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+</header>
+
+<main>
+    <article class="article">
+        <div class="container">
+            <div class="article-inner">
+                <a class="back-link" href="../blog.html">← Back to blog</a>
+                <div class="meta"><span>25 Jun 2026</span><span class="tag">Project</span><span>5 min read</span></div>
+                <h1>Building Resleeve: turning albums into wallpapers</h1>
+                <div class="article-body">
+                    <p>Resleeve started with a small, slightly petty frustration: I wanted a clean, poster-style wallpaper of an album I'd been listening to on repeat, and everything I could find online was either low-resolution, plastered in watermarks, or just ugly. So I did the developer thing and decided it'd be quicker to build it myself. (It was not quicker. It never is.)</p>
+
+                    <h2>What it does</h2>
+                    <p>You type in an artist or album, and Resleeve pulls the metadata — cover art, full tracklist, total runtime, release year — and composes it into a balanced, downloadable wallpaper. The goal was for the output to look <em>designed</em>, not auto-generated: considered spacing, a colour palette pulled from the artwork itself, and typography that doesn't fight the cover.</p>
+
+                    <h2>How it's put together</h2>
+                    <p>The backend is <code>Python</code> with <code>Flask</code> handling the routes and a rendering layer that builds the final image. The flow is roughly:</p>
+                    <ul>
+                        <li>Look up the album and fetch its metadata and high-resolution artwork.</li>
+                        <li>Sample the cover to build a small, harmonious colour palette for the layout.</li>
+                        <li>Lay out the artwork, tracklist and details on a canvas with consistent margins and type scale.</li>
+                        <li>Export it at wallpaper resolution so it actually looks sharp on a real screen.</li>
+                    </ul>
+
+                    <h2>The bit that was actually hard</h2>
+                    <p>Honestly? The design, not the code. Pulling data is straightforward; making the result look good across <em>every</em> album — a minimalist white cover and a chaotic neon one — is the hard part. A layout that's gorgeous for one record falls apart for the next. Most of my time went into rules that hold up regardless of the input: how the palette adapts, how long tracklists wrap, how the type scales when an album has 27 songs versus 8.</p>
+
+                    <blockquote>The lesson that keeps repeating for me: the engineering is rarely the hard part — the judgement is.</blockquote>
+
+                    <h2>What's next</h2>
+                    <p>A few things I want to add: more layout templates, light and dark variants, and better handling for deluxe editions with enormous tracklists. If you've got an album you think would look great as a poster, <a href="../index.html#contact">tell me</a> — testing it against real edge cases is half the fun.</p>
+
+                    <p>You can try the current version at <a href="https://resleeve.marsphobos.com" target="_blank" rel="noopener noreferrer">resleeve.marsphobos.com</a>.</p>
+                </div>
+            </div>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <div class="container footer-grid">
+        <span>© <span id="year">2026</span> Morgan Bennett — mars_phobos</span>
+        <a href="#top">Back to top ↑</a>
+    </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>
