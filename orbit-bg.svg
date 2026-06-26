@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" fill="none" preserveAspectRatio="xMidYMid slice">
+  <!--
+    Centre sits inside the viewport (right-centre area).
+    You see real curvature on all three rings, and the anchor dot
+    tells you immediately these are orbits around something.
+  -->
+  <circle cx="1300" cy="480" r="5" fill="#141820" fill-opacity="0.18"/>
+  <ellipse cx="1300" cy="480" rx="190" ry="158"
+           stroke="#141820" stroke-width="1.5" stroke-opacity="0.14"
+           transform="rotate(14 1300 480)"/>
+  <ellipse cx="1300" cy="480" rx="335" ry="278"
+           stroke="#141820" stroke-width="1.2" stroke-opacity="0.10"
+           transform="rotate(9 1300 480)"/>
+  <ellipse cx="1300" cy="480" rx="510" ry="422"
+           stroke="#141820" stroke-width="1" stroke-opacity="0.07"
+           transform="rotate(5 1300 480)"/>
+</svg>
