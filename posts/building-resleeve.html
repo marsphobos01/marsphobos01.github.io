@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+  POST TEMPLATE — to add a new blog post:
+  1. Copy this file to posts/your-post-slug.html
+  2. Edit the <title>, meta description, the .meta line, the <h1>, and the .article-body content
+  3. Add a matching <a class="post-row"> entry in /blog.html pointing to your new file
+  Keep paths prefixed with ../ since this file lives in /posts/.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Resleeve — Morgan Bennett</title>
+    <meta name="description" content="How a small idea turned into Resleeve — a Python web app that composes album artwork, tracklists and runtime into a downloadable wallpaper.">
+    <meta name="theme-color" content="#f0ebe8">
+    <link rel="canonical" href="https://marsphobos.com/posts/building-resleeve.html">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Building Resleeve: turning albums into wallpapers">
+    <meta property="og:description" content="A build log on Resleeve — turning album metadata into a clean poster-style wallpaper.">
+    <meta property="og:url" content="https://marsphobos.com/posts/building-resleeve.html">
+    <meta property="og:image" content="https://marsphobos.com/banner.jpg">
+    <meta property="og:image:alt" content="Resleeve — album-to-wallpaper generator by Morgan Bennett">
+    <meta property="article:published_time" content="2026-06-25">
+    <meta property="article:author" content="Morgan Bennett">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Building Resleeve: turning albums into wallpapers">
+    <meta name="twitter:description" content="A build log on Resleeve — turning album metadata into a clean poster-style wallpaper.">
+    <meta name="twitter:image" content="https://marsphobos.com/banner.jpg">
+    <meta name="twitter:site" content="@mars_ph0b05">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Building Resleeve: turning albums into wallpapers",
+      "description": "How a small idea turned into Resleeve — a Python web app that composes album artwork, tracklists and runtime into a downloadable wallpaper.",
+      "image": "https://marsphobos.com/banner.jpg",
+      "datePublished": "2026-06-25",
+      "dateModified": "2026-06-25",
+      "url": "https://marsphobos.com/posts/building-resleeve.html",
+      "mainEntityOfPage": "https://marsphobos.com/posts/building-resleeve.html",
+      "author": { "@type": "Person", "name": "Morgan Bennett", "url": "https://marsphobos.com/" },
+      "publisher": { "@type": "Person", "name": "Morgan Bennett" },
+      "keywords": "Python, Flask, Pillow, web app, build log"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body id="top">
+
+<header class="site-header" id="header">
+    <div class="container nav">
+        <a href="../index.html" class="brand">Morgan Bennett</a>
+        <nav class="nav-links" id="navLinks" aria-label="Primary">
+            <a href="../index.html">Home</a>
+            <a href="../projects.html">Projects</a>
+            <a href="../blog.html" aria-current="page">Blog</a>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+</header>
+
+<main>
+    <article class="article">
+        <div class="container">
+            <div class="article-inner">
+                <a class="back-link" href="../blog.html">← Back to blog</a>
+                <div class="meta"><span>25 Jun 2026</span><span class="tag">Project</span><span>6 min read</span></div>
+                <h1>Building Resleeve 1.0: turning albums into wallpapers</h1>
+                <div class="article-body">
+                    <p>Resleeve started with a specific frustration: I wanted a clean, poster-style wallpaper of an album I'd been listening to, and everything I could find online was low-resolution, watermarked, or ugly. So I built it. The core idea was simple — pull album metadata and render it into something that looks <em>designed</em> — but the implementation turned out to be a proper engineering problem.</p>
+
+                    <h2>The data layer</h2>
+                    <p>Resleeve is built on the <strong>MusicBrainz API</strong>, an open, community-maintained music database. I wrote a wrapper around their REST API that handles artist disambiguation, release group resolution, and cover art retrieval via the Cover Art Archive. MusicBrainz's data model is more nuanced than most music APIs — it distinguishes between release groups, releases, and recordings — so understanding that hierarchy was necessary to reliably get the right cover at the right resolution for the right edition of an album.</p>
+
+                    <h2>The rendering pipeline</h2>
+                    <p>All image composition happens server-side with <strong>Pillow</strong>. There's no client-side canvas, no SVG export — the final image is built pixel by pixel in Python and served as a PNG. The render function:</p>
+                    <ul>
+                        <li>Fetches and decodes the high-resolution cover art into a Pillow image object.</li>
+                        <li>Samples the cover using a <strong>k-means colour clustering approach</strong> to extract a palette — dominant colour, a saturated accent, and a readable foreground — that adapts to both dark and light artwork.</li>
+                        <li>Composes the layout on a fixed canvas: artwork positioned to a grid, tracklist split into balanced columns, runtime and metadata in a footer strip.</li>
+                        <li>Exports at wallpaper resolution with correct DPI metadata.</li>
+                    </ul>
+
+                    <h2>The design constraint that drove everything</h2>
+                    <p>The hard problem in Resleeve isn't fetching data or composing images — it's writing layout rules that hold up across <em>every</em> album. A minimalist white cover and a dense psychedelic painting are both valid inputs. A seven-track EP and a thirty-song deluxe edition both need to produce something legible and balanced. Every layout decision — column count, type scale, padding, how the palette gets applied — had to be expressed as an adaptive rule rather than a fixed value.</p>
+
+                    <p>This meant building a small system of layout logic: tracklist column balancing that splits tracks as evenly as possible regardless of count, font size scaling tied to available canvas area, and a palette application layer that determines contrast ratios before choosing whether to render light or dark text. The code that does this isn't complex, but writing it required making a lot of explicit decisions about what "looks right" means and encoding those decisions in a way a machine can follow.</p>
+
+                    <blockquote>The engineering was the straightforward part. The hard part was making judgement calls that scale.</blockquote>
+
+                    <h2>What it shipped with</h2>
+                    <p>V1 launched with a single layout template, a Bootstrap frontend, full MusicBrainz integration, and a barcode Easter egg embedded in the output image. It handled everything from standard albums to multi-disc releases, and the palette extraction produced results I was genuinely happy with across a wide range of artwork styles.</p>
+
+                    <p>V1 seemed solid. So why did I rebuild the whole thing from scratch? That's <a href="remastering-resleeve.html">the next post</a>.</p>
+                </div>
+            </div>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <div class="container footer-grid">
+        <span>© <span id="year">2026</span> Morgan Bennett — mars_phobos</span>
+        <a href="#top">Back to top ↑</a>
+    </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

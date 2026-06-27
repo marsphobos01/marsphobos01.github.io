@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects — Morgan Bennett | Full-Stack Developer &amp; Homelab</title>
+    <meta name="description" content="Projects by Morgan Bennett — production web apps, client websites and developer tools in Python, Rust, TypeScript and PHP, plus a self-hosted Proxmox/Docker homelab with segmented networking, firewalls, Cloudflare (DNS, Zero Trust) and Tailscale.">
+    <meta name="author" content="Morgan Bennett">
+    <meta name="theme-color" content="#f0ebe8">
+    <link rel="canonical" href="https://marsphobos.com/projects.html">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Morgan Bennett">
+    <meta property="og:title" content="Projects — Morgan Bennett | Full-Stack Developer Portfolio">
+    <meta property="og:description" content="Production web apps, client websites and developer tools built in Python, Rust, TypeScript and PHP.">
+    <meta property="og:url" content="https://marsphobos.com/projects.html">
+    <meta property="og:image" content="https://marsphobos.com/banner.jpg">
+    <meta property="og:image:alt" content="Morgan Bennett — full-stack developer portfolio">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Projects — Morgan Bennett | Full-Stack Developer">
+    <meta name="twitter:description" content="Production web apps, client websites and developer tools in Python, Rust, TypeScript and PHP.">
+    <meta name="twitter:image" content="https://marsphobos.com/banner.jpg">
+    <meta name="twitter:site" content="@mars_ph0b05">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Projects — Morgan Bennett",
+      "url": "https://marsphobos.com/projects.html",
+      "author": { "@type": "Person", "name": "Morgan Bennett", "url": "https://marsphobos.com/" },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem", "position": 1,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Personal Homelab & Self-Hosted Infrastructure",
+              "url": "https://marsphobos.com/projects.html",
+              "description": "Self-managed Proxmox host running VMs and LXC containers, hosting Dockerised services with VLAN-segmented networking, firewalls, Cloudflare (DNS, Zero Trust) and Tailscale remote access.",
+              "author": { "@type": "Person", "name": "Morgan Bennett" },
+              "keywords": "Proxmox, Docker, Linux, VLANs, firewalls, Cloudflare, Cloudflare Zero Trust, Tailscale, networking, self-hosting"
+            }
+          },
+          {
+            "@type": "ListItem", "position": 2,
+            "item": {
+              "@type": "WebSite",
+              "name": "Bespoke Water Solutions",
+              "url": "https://bespokewatersolutions.co.uk",
+              "description": "Responsive business website for a UK water-pump supplier — product catalogue and PHP enquiry form, shipped to production.",
+              "author": { "@type": "Person", "name": "Morgan Bennett" }
+            }
+          },
+          {
+            "@type": "ListItem", "position": 3,
+            "item": {
+              "@type": "WebApplication",
+              "name": "Resleeve",
+              "url": "https://resleeve.marsphobos.com",
+              "applicationCategory": "MultimediaApplication",
+              "operatingSystem": "Web",
+              "description": "Python web app that turns any release into a poster-style wallpaper, rendered server-side with Pillow.",
+              "author": { "@type": "Person", "name": "Morgan Bennett" }
+            }
+          },
+          {
+            "@type": "ListItem", "position": 4,
+            "item": {
+              "@type": "WebApplication",
+              "name": "Score",
+              "applicationCategory": "MultimediaApplication",
+              "operatingSystem": "Web",
+              "creativeWorkStatus": "Planning",
+              "description": "Music ranking and scoring web app in the planning stage — currently being prototyped in Figma, planned around a PostgreSQL data model and the Spotify API.",
+              "author": { "@type": "Person", "name": "Morgan Bennett" }
+            }
+          },
+          {
+            "@type": "ListItem", "position": 5,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Lodestone",
+              "url": "https://github.com/m4r5-ph0b05",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Windows, macOS, Linux",
+              "description": "Open-source Rust desktop app for identifying and managing Minecraft mods.",
+              "author": { "@type": "Person", "name": "Morgan Bennett" }
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+
+<header class="site-header" id="header">
+    <div class="container nav">
+        <a href="index.html" class="brand">Morgan Bennett</a>
+        <nav class="nav-links" id="navLinks" aria-label="Primary">
+            <a href="index.html">Home</a>
+            <a href="projects.html" aria-current="page">Projects</a>
+            <a href="blog.html">Blog</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+</header>
+
+<main>
+    <div class="container page-head page-head--rule">
+        <span class="eyebrow reveal">Projects</span>
+        <h1 class="reveal">Everything I've built<span class="dot">.</span></h1>
+        <p class="reveal">Client work, web apps and developer tools — built end-to-end, from design through to deployment, and shipped to production. A selection of full-stack projects in Python, Rust, TypeScript and PHP.</p>
+    </div>
+
+    <section class="section" style="padding-top: clamp(2.5rem, 6vh, 4rem);">
+        <div class="container">
+            <div class="cards">
+
+                <article class="card reveal">
+                    <figure class="proj-media">
+                        <div class="plate shot" style="background-image:url('assets/projects/proxmox.jpg')">
+                            <div class="plate-top"><span>Infrastructure · Ongoing</span><span class="stage prod">● Production</span></div>
+                            <div class="plate-word">Homelab</div>
+                            <div class="plate-url">Proxmox · Docker · networking</div>
+                        </div>
+                    </figure>
+                    <h3 class="proj-title">Personal Homelab &amp; Self-Hosted Infrastructure</h3>
+                    <div class="proj-kicker">Proxmox · Docker · networking · Cloudflare</div>
+                    <p class="proj-desc">The infrastructure behind my live projects: a self-managed Proxmox host running VMs and LXC containers, with my apps deployed as Dockerised services. VLAN-segmented networking and firewall rules keep things isolated; DNS and public access are handled through Cloudflare (Zero Trust), with Tailscale for secure remote administration. This is where I apply what I study — TCP/IP, network security and CCNA 1 — hands-on.</p>
+                    <div class="proj-tech"><span>Proxmox</span><span>Docker</span><span>Linux</span><span>VLANs</span><span>Cloudflare</span><span>Tailscale</span></div>
+                </article>
+
+                <article class="card reveal">
+                    <figure class="proj-media">
+                        <div class="plate shot" style="background-image:url('assets/projects/bespoke.jpg')">
+                            <div class="plate-top"><span>Client · 2025</span><span class="stage prod">● Production</span></div>
+                            <div class="plate-word">Bespoke<br>Water&nbsp;Solutions</div>
+                            <div class="plate-url">bespokewatersolutions.co.uk</div>
+                        </div>
+                    </figure>
+                    <h3 class="proj-title">Bespoke Water Solutions</h3>
+                    <div class="proj-kicker">Responsive business website · UK client</div>
+                    <p class="proj-desc">A responsive marketing site for a UK water-pump supplier — a conversion-focused hero, a six-category product catalogue and an integrated enquiry form, all matched to the client's brand and shipped to production.</p>
+                    <div class="proj-tech"><span>JavaScript</span><span>HTML / CSS</span><span>Responsive</span></div>
+                    <div class="proj-links"><a class="proj-link" href="https://bespokewatersolutions.co.uk" target="_blank" rel="noopener noreferrer">Visit site <span class="arrow">↗</span></a></div>
+                </article>
+
+                <article class="card reveal">
+                    <figure class="proj-media">
+                        <div class="plate shot" style="background-image:url('assets/projects/resleeve.jpg')">
+                            <div class="plate-top"><span>Web app · 2025</span><span class="stage prod">● Production</span></div>
+                            <div class="plate-word">Resleeve</div>
+                            <div class="plate-url">resleeve.marsphobos.com</div>
+                        </div>
+                    </figure>
+                    <h3 class="proj-title">Resleeve</h3>
+                    <div class="proj-kicker">Release-to-wallpaper generator · V2.0</div>
+                    <p class="proj-desc">A Python web app that turns any release — album, EP, or single — into a poster-style wallpaper. A multi-step wizard walks you through picking a theme, background style, and effects; Pillow renders it server-side at wallpaper resolution with layout, palette and typography all adapted to the release. Built entirely without frameworks — custom CSS, custom rendering engine, three layout templates each with desktop and mobile variants.</p>
+                    <div class="proj-tech"><span>Python</span><span>Flask</span><span>Pillow</span><span>MusicBrainz</span><span>HTML / CSS</span></div>
+                    <div class="proj-links"><a class="proj-link" href="https://resleeve.marsphobos.com" target="_blank" rel="noopener noreferrer">Visit site <span class="arrow">↗</span></a></div>
+                </article>
+
+                <article class="card reveal">
+                    <figure class="proj-media">
+                        <div class="plate shot" style="background-image:url('assets/projects/score.jpg')">
+                            <div class="plate-top"><span>Web app · 2025</span><span class="stage plan">○ Planning</span></div>
+                            <div class="plate-word">Score</div>
+                            <div class="plate-url">Music ranking &amp; scoring</div>
+                        </div>
+                    </figure>
+                    <h3 class="proj-title">Score</h3>
+                    <div class="proj-kicker">Music ranking &amp; scoring app · In design</div>
+                    <p class="proj-desc">A web app for ranking and scoring your favourite music — build ranked lists from your Spotify library, compare albums and tracks, and keep a personal record of what you actually rate. Currently being prototyped in Figma, with the build planned around a PostgreSQL data model and the Spotify API.</p>
+                    <div class="proj-tech"><span>Figma</span><span>Python</span><span>Flask</span><span>PostgreSQL</span><span>Spotify API</span></div>
+                </article>
+
+                <article class="card reveal">
+                    <figure class="proj-media">
+                        <div class="plate shot" style="background-image:url('assets/projects/lodestone.jpg')">
+                            <div class="plate-top"><span>Desktop · Open source</span><span class="stage prod">● Released</span></div>
+                            <div class="plate-word">Lodestone</div>
+                            <div class="plate-url">Minecraft mod manager</div>
+                        </div>
+                    </figure>
+                    <h3 class="proj-title">Lodestone</h3>
+                    <div class="proj-kicker">Minecraft mod manager · Rust</div>
+                    <p class="proj-desc">A Rust desktop app for identifying and managing Minecraft mods through community-driven classification — sorting client and server mods so administrators and players can keep a modpack clean and organised.</p>
+                    <div class="proj-tech"><span>Rust</span><span>GUI</span><span>Systems</span></div>
+                    <div class="proj-links"><a class="proj-link" href="https://github.com/marsphobos01/lodestone" target="_blank" rel="noopener noreferrer">View on GitHub <span class="arrow">↗</span></a></div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <span class="eyebrow reveal">Contact</span>
+            <h2 class="reveal">Let's build something<span class="dot">.</span></h2>
+            <a class="contact-email reveal" href="mailto:dev@marsphobos.com">dev@marsphobos.com</a>
+            <div class="contact-foot reveal">
+                <div class="socials">
+                    <a href="https://github.com/m4r5-ph0b05" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://www.linkedin.com/in/morgan-bennett-817800295/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/mars_ph0b05" target="_blank" rel="noopener noreferrer">X</a>
+                    <a href="https://www.instagram.com/m_4rs_/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                </div>
+                <span class="place">Open to freelance, collaborations &amp; internships</span>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container footer-grid">
+        <span>© <span id="year">2026</span> Morgan Bennett — mars_phobos</span>
+        <a href="#top">Back to top ↑</a>
+    </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.DS_Store
+.claude/
+index.old.html
+*.stale
+err1
+err2
+_attic/
+anthology-preview.html

@@ -3,807 +3,442 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morgan Bennett | Full Stack Developer</title>
+
+    <title>Morgan Bennett — Full-Stack Developer &amp; Networks / Cybersecurity | Newcastle, UK</title>
+    <meta name="description" content="Morgan Bennett — full-stack developer (Python, Rust, TypeScript) and Networks &amp; Cybersecurity student at Northumbria University, based in Wakefield &amp; Newcastle, UK. I build production web apps and self-host them on a Proxmox/Docker homelab with segmented networking. CCNA 1 completed. Available for placement, graduate and freelance roles.">
+    <meta name="author" content="Morgan Bennett">
+    <meta name="theme-color" content="#f0ebe8">
+    <link rel="canonical" href="https://marsphobos.com/">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Morgan Bennett">
+    <meta property="og:title" content="Morgan Bennett — Full-Stack Developer &amp; Networks / Cybersecurity">
+    <meta property="og:description" content="Full-stack developer and Networks &amp; Cybersecurity student at Northumbria University. I build production web apps and run the infrastructure they live on — Proxmox, Docker, segmented networking. Available for placement, graduate &amp; freelance roles.">
+    <meta property="og:url" content="https://marsphobos.com/">
+    <meta property="og:image" content="https://marsphobos.com/banner.jpg">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Morgan Bennett — Full-Stack Developer &amp; Networks / Cybersecurity">
+    <meta name="twitter:description" content="Full-stack developer and Networks &amp; Cybersecurity student at Northumbria. I build web apps and run the infrastructure they live on. Available for placement, graduate &amp; freelance roles.">
+    <meta name="twitter:image" content="https://marsphobos.com/banner.jpg">
+    <meta name="twitter:site" content="@mars_ph0b05">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style> 
-        :root {
-            --bg: #f3f1ee;
-            --ink: #101314;
-            --muted: #5a6165;
-            --accent: #c76a2f;
-            --accent-dark: #8f4a22;
-            --card: #f7f2ea;
-            --line: #d7d2cb;
-            --shadow: rgba(16, 19, 20, 0.12);
-            --radius: 18px;
-            --max-width: 1100px;
-            --transition: 220ms ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Sora", "Segoe UI", Arial, sans-serif;
-            background: radial-gradient(circle at top left, #f9f7f4 0%, var(--bg) 45%, #ebe5dd 100%);
-            color: var(--ink);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(16, 19, 20, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(16, 19, 20, 0.05) 1px, transparent 1px);
-            background-size: 120px 120px;
-            pointer-events: none;
-            opacity: 0.4;
-            z-index: -1;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .container {
-            width: min(100% - 2.5rem, var(--max-width));
-            margin: 0 auto;
-        }
-
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background: rgba(243, 241, 238, 0.92);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(16, 19, 20, 0.08);
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 0;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-        }
-
-        .brand-mark {
-            width: 38px;
-            height: 38px;
-            border-radius: 12px;
-            border: 1px solid var(--line);
-            display: grid;
-            place-items: center;
-            font-weight: 700;
-            font-size: 0.95rem;
-            background: var(--card);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a {
-            padding: 0.25rem 0;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -6px;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width var(--transition);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a:focus::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            border: 1px solid var(--line);
-            background: var(--card);
-            padding: 0.35rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-        }
-
-        h1, h2, h3 {
-            font-family: "Bricolage Grotesque", "Segoe UI", Arial, sans-serif;
-            line-height: 1.1;
-        }
-
-        h1 {
-            font-size: clamp(2.6rem, 4.6vw, 4.4rem);
-            margin-bottom: 1rem;
-        }
-
-        h2 {
-            font-size: clamp(2rem, 3.2vw, 2.8rem);
-            margin-bottom: 1.5rem;
-        }
-
-        h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .eyebrow {
-            text-transform: uppercase;
-            letter-spacing: 0.28em;
-            font-size: 0.72rem;
-            color: var(--muted);
-            margin-bottom: 1rem;
-        }
-
-        .hero {
-            padding: 5.5rem 0 4rem;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 3.5rem;
-            align-items: center;
-        }
-
-        .lead {
-            color: var(--muted);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 1.5rem;
-            border-radius: 999px;
-            font-weight: 600;
-            border: 1px solid transparent;
-            transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
-        }
-
-        .btn.primary {
-            background: var(--ink);
-            color: var(--card);
-            box-shadow: 0 10px 18px rgba(16, 19, 20, 0.2);
-        }
-
-        .btn.primary:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn.ghost {
-            border-color: var(--ink);
-            color: var(--ink);
-            background: transparent;
-        }
-
-        .hero-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .tag {
-            padding: 0.35rem 0.9rem;
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            font-size: 0.85rem;
-            color: var(--muted);
-            background: rgba(255, 255, 255, 0.6);
-        }
-
-        .hero-art {
-            display: grid;
-            gap: 1.5rem;
-            justify-items: end;
-        }
-
-        .portrait-card {
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: 1rem;
-            border: 1px solid rgba(16, 19, 20, 0.06);
-            align-self: center;
-        }
-
-        .portrait-card {
-            max-width: 360px;
-        }
-
-        .portrait-card img {
-            border-radius: calc(var(--radius) - 8px);
-            aspect-ratio: 4 / 5;
-            object-fit: cover;
-            object-position: center 20%;
-
-
-        }
-
-        .portrait-caption {
-            margin-top: 0.75rem;
-            font-size: 0.9rem;
-            color: var(--muted);
-        }
-
-        .portrait-caption:empty {
-            display: none;
-        }
-
-        .section {
-            padding: 4.5rem 0;
-            position: relative;
-        }
-
-        .section-shell {
-            background: rgba(236, 229, 220, 0.65);
-            border: 1px solid rgba(16, 19, 20, 0.08);
-            border-radius: calc(var(--radius) + 6px);
-            padding: 3rem;
-        }
-
-        .section-head {
-            margin-bottom: 2.5rem;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 2.5rem;
-            align-items: start;
-        }
-
-        .about-copy {
-            align-self: start;
-        }
-
-        .info-card {
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            border: 1px solid rgba(16, 19, 20, 0.06);
-            width: 100%;
-            max-width: 320px;
-            text-align: center;
-            justify-self: end;
-            align-self: start;
-        }
-
-        .pill-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 0.5rem;
-            justify-content: center;
-        }
-
-        .pill {
-            padding: 0.3rem 0.8rem;
-            border-radius: 999px;
-            border: 1px solid var(--line);
-            background: transparent;
-            color: var(--ink);
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .work-section {
-            background: transparent;
-            border-top: none;
-            border-bottom: none;
-        }
-
-        .project-list {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .project {
-            display: grid;
-            grid-template-columns: 220px 1fr;
-            gap: 2rem;
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            border: 1px solid rgba(16, 19, 20, 0.06);
-        }
-
-        .project-cover img {
-            border-radius: 14px;
-            width: 100%;
-            aspect-ratio: 3 / 1;       /* consistent wide banner shape */
-            object-fit: cover;
-            object-position: center;   /* ensures focal point is centred */
-            display: block;
-        }
-
-        .project-cover img[alt="Resleeve preview"] {
-            object-fit: contain;
-            background-color: #EAE0D5; /* match the logo's background colour */
-            padding: 5px;             /* optional: add breathing room around the logo */
-        }
-
-        .project-cover img[alt="BWS preview"] {
-            object-fit: contain;
-            background-color: #3C7DED; /* match the logo's background colour */
-            padding: 5px;             /* optional: add breathing room around the logo */
-        }
-
-        .project-cover img[alt="Resleeve preview"] {
-            object-fit: contain;
-            background-color: #EAE0D5; /* match the logo's background colour */
-            padding: 5px;             /* optional: add breathing room around the logo */
-        }
-
-        .project-cover img[alt="Lodestone preview"] {
-            object-fit: contain;
-            background-color: #FFFFFF; /* match the logo's background colour */
-            padding: 5px;             /* optional: add breathing room around the logo */
-        }
-
-        .project-action {
-            margin-top: 0.75rem;
-        }
-
-        .btn.link {
-            border: 1px solid var(--line);
-            color: var(--ink);
-            background: transparent;
-            padding: 0.6rem 1.2rem;
-            border-radius: 14px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: background var(--transition), border-color var(--transition);
-            width: 100%;
-        }
-
-        .btn.link:hover {
-            border-color: rgba(16, 19, 20, 0.3);
-            background: rgba(255, 255, 255, 0.7);
-        }
-
-        .project-top {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-badge {
-            background: var(--accent);
-            color: white;
-            font-size: 0.75rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 999px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .project-body p {
-            color: var(--muted);
-            margin-bottom: 1rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .project-tech span {
-            font-size: 0.8rem;
-            background: rgba(255, 255, 255, 0.6);
-            color: var(--ink);
-            padding: 0.25rem 0.6rem;
-            border-radius: 8px;
-        }
-
-        .project-links a {
-            font-weight: 600;
-            color: var(--ink);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .contact-card {
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            border: 1px solid rgba(16, 19, 20, 0.06);
-        }
-
-        .links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-
-        .links a {
-            border: 1px solid var(--line);
-            padding: 0.45rem 0.9rem;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            background: rgba(255, 255, 255, 0.6);
-        }
-
-        footer {
-            padding: 2.5rem 0;
-            text-align: center;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(16px);
-            transition: opacity 600ms ease, transform 600ms ease;
-        }
-
-        .reveal.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 900px) {
-            .hero-grid,
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-grid {
-                gap: 2rem;
-            }
-
-            .hero-copy {
-                order: 2;
-            }
-
-            .hero-art {
-                order: 1;
-            }
-
-            .hero-art {
-                justify-items: center;
-            }
-
-            .project {
-                grid-template-columns: 1fr;
-            }
-
-            .info-card {
-                justify-self: center;
-            }
-
-            .about-copy p + p {
-                margin-top: 1rem;
-            }
-
-            .contact-grid {
-                justify-items: center;
-                justify-content: center;
-            }
-
-            .contact-card {
-                width: 100%;
-                max-width: 420px;
-                margin: 0 auto;
-            }
-        }
-
-        @media (max-width: 760px) {
-            .nav-links {
-                position: fixed;
-                top: 68px;
-                right: 1.25rem;
-                background: var(--card);
-                flex-direction: column;
-                padding: 1rem 1.5rem;
-                border-radius: 16px;
-                box-shadow: 0 16px 30px var(--shadow);
-                opacity: 0;
-                pointer-events: none;
-                transform: translateY(-10px);
-                transition: var(--transition);
-            }
-
-            .nav-links.open {
-                opacity: 1;
-                pointer-events: auto;
-                transform: translateY(0);
-            }
-
-            .menu-toggle {
-                display: inline-flex;
-            }
-        }
-
-        @media (max-width: 560px) {
-            .hero {
-                padding-top: 4.5rem;
-            }
-
-            .hero-actions {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Morgan Bennett",
+      "alternateName": "mars_phobos",
+      "url": "https://marsphobos.com/",
+      "image": "https://marsphobos.com/assets/portrait.jpg",
+      "jobTitle": ["Full-Stack Developer", "Networks & Cybersecurity Student"],
+      "description": "Full-stack developer (Python, Rust, TypeScript) and Networks & Cybersecurity student at Northumbria University, based in Wakefield & Newcastle, UK. Designs and ships production web apps, APIs and tools, and self-hosts them on a Proxmox/Docker homelab with VLAN-segmented networking, firewalls, Cloudflare (DNS, Zero Trust) and Tailscale remote access. CCNA 1 (Cisco Networking Academy) completed. Available for placement, graduate and freelance roles across software development, networking and security.",
+      "address": { "@type": "PostalAddress", "addressLocality": "Newcastle upon Tyne", "addressRegion": "England", "addressCountry": "GB" },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Northumbria University" },
+      "knowsAbout": ["Full-stack development", "Web development", "Software engineering", "Cybersecurity", "Network security", "Computer networking", "TCP/IP", "VLANs", "Firewalls", "Proxmox", "Docker", "Self-hosting", "Linux server administration", "Cloudflare", "Cloudflare Zero Trust", "Tailscale", "Cisco CCNA", "Python", "Flask", "Rust", "TypeScript", "JavaScript", "PostgreSQL", "REST APIs", "Git", "UI/UX design"],
+      "knowsLanguage": "English",
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "certificate",
+        "name": "CCNA 1: Introduction to Networks",
+        "recognizedBy": { "@type": "Organization", "name": "Cisco Networking Academy" }
+      },
+      "seeks": {
+        "@type": "Demand",
+        "name": "Placement, graduate and freelance roles in software development, networking and cybersecurity"
+      },
+      "email": "mailto:dev@marsphobos.com",
+      "sameAs": [
+        "https://github.com/m4r5-ph0b05",
+        "https://www.linkedin.com/in/morgan-bennett-817800295/",
+        "https://x.com/mars_ph0b05",
+        "https://www.instagram.com/m_4rs_/"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Morgan Bennett",
+      "url": "https://marsphobos.com/",
+      "author": { "@type": "Person", "name": "Morgan Bennett" }
+    }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<header class="site-header">
+<body id="top">
+
+<header class="site-header" id="header">
     <div class="container nav">
-        <a href="#home" class="brand">
-            <span class="brand-mark">MB</span>
-            <span class="brand-text">Morgan Bennett</span>
-        </a>
-        <nav class="nav-links" id="navLinks">
-            <a href="#home">Home</a>
+        <a href="#top" class="brand">Morgan Bennett</a>
+        <nav class="nav-links" id="navLinks" aria-label="Primary">
+            <a href="#top" aria-current="page">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="blog.html">Blog</a>
             <a href="#about">About</a>
-            <a href="#work">Work</a>
             <a href="#contact">Contact</a>
         </nav>
-        <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false">Menu</button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
 </header>
 
-<section id="home" class="hero">
+<!-- ===== HERO ===== -->
+<section class="hero">
     <div class="container hero-grid">
-        <div class="hero-copy reveal">
-            <h1>Morgan Bennett</h1>
-            <p class="lead">Cybersecurity & Networking Student.<br>Software and Full Stack Web Dev.</p>
+        <div class="hero-copy">
+<span class="eyebrow hero-eyebrow">Wakefield &amp; Newcastle, UK</span>
+<h1>Morgan<br>Bennett<span class="dot">.</span></h1>
+            <p class="hero-statement">Full-stack developer and Networks &amp; Cybersecurity student at Northumbria University. I <b>build web apps and software tools</b> — and <b>run the infrastructure they live on</b>, self-hosting on a Proxmox/Docker homelab with segmented networking. Available for <b>placement, graduate and freelance</b> roles.</p>
             <div class="hero-actions">
-                <a class="btn primary" href="#work">View work</a>
-                <a class="btn ghost" href="#contact">Contact</a>
-            </div>
-            <div class="hero-tags">
-                <span class="tag">Full-stack</span>
-                <span class="tag">Systems & networking</span>
-                <span class="tag">Music & creativity</span>
-                <span class="tag">UI interaction design</span>
+                <a class="btn btn--accent" href="projects.html">View my work <span class="arrow">→</span></a>
+                <a class="btn btn--lineInk" href="Morgan-Bennett-CV.pdf" download>Download CV</a>
+                <a class="btn btn--lineInk" href="#contact">Get in touch</a>
             </div>
         </div>
-        <div class="hero-art reveal">
-            <div class="portrait-card">
-                <img src="AMG-3351.jpg" alt="Morgan Bennett portrait">
-                <div class="portrait-caption"></div>
+        <div class="hero-visual"><canvas id="gem"></canvas></div>
+    </div>
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-window">
+            <div class="ticker-track">
+                <span>Python</span><span>Rust</span><span>TypeScript</span><span>Flask</span><span>PostgreSQL</span><span>REST APIs</span><span>Linux</span><span>Networking</span><span>Cybersecurity</span><span>Proxmox</span><span>Docker</span><span>TCP/IP</span><span>VLANs</span><span>Cloudflare</span><span>Tailscale</span><span>CCNA</span><span>Git</span><span>Figma</span>
+                <span>Python</span><span>Rust</span><span>TypeScript</span><span>Flask</span><span>PostgreSQL</span><span>REST APIs</span><span>Linux</span><span>Networking</span><span>Cybersecurity</span><span>Proxmox</span><span>Docker</span><span>TCP/IP</span><span>VLANs</span><span>Cloudflare</span><span>Tailscale</span><span>CCNA</span><span>Git</span><span>Figma</span>
             </div>
         </div>
     </div>
 </section>
 
-<section id="about" class="section">
-    <div class="container">
-        <div class="section-shell">
+<main>
+    <!-- ===== WORK ===== -->
+    <section class="section" id="work">
+        <div class="container">
+            <div class="section-head reveal">
+                <h2>Selected work</h2>
+                <a class="count" href="projects.html">View all projects →</a>
+            </div>
+            <div class="work-list">
+                <article class="proj reveal">
+                    <figure class="proj-media">
+                        <div class="plate shot" style="background-image:url('assets/projects/bespoke.jpg')">
+                            <div class="plate-top"><span>Client · 2025</span><span class="stage prod">● Production</span></div>
+                            <div class="plate-word">Bespoke<br>Water&nbsp;Solutions</div>
+                            <div class="plate-url">bespokewatersolutions.co.uk</div>
+                        </div>
+                    </figure>
+                    <div class="proj-body">
+                        <span class="proj-no">01</span>
+                        <h3 class="proj-title">Bespoke Water Solutions</h3>
+                        <div class="proj-kicker">Responsive business website</div>
+                        <p class="proj-desc">End-to-end design and build for a UK water-pump supplier — visual design, a six-category product catalogue, a PHP-backed enquiry form and a fully responsive layout, shipped to production. Built in HTML, CSS, JavaScript and PHP with no frameworks.</p>
+                        <div class="proj-tech"><span>JavaScript</span><span>HTML / CSS</span><span>Responsive</span></div>
+                        <div class="proj-links"><a class="proj-link" href="https://bespokewatersolutions.co.uk" target="_blank" rel="noopener noreferrer">Visit site <span class="arrow">↗</span></a></div>
+                    </div>
+                </article>
+
+                <article class="proj reveal">
+                    <figure class="proj-media">
+                        <div class="plate shot" style="background-image:url('assets/projects/resleeve.jpg')">
+                            <div class="plate-top"><span>Web app · 2025</span><span class="stage prod">● Production</span></div>
+                            <div class="plate-word">Resleeve</div>
+                            <div class="plate-url">resleeve.marsphobos.com</div>
+                        </div>
+                    </figure>
+                    <div class="proj-body">
+                        <span class="proj-no">02</span>
+                        <h3 class="proj-title">Resleeve</h3>
+                        <div class="proj-kicker">Release-to-wallpaper generator · V2.0</div>
+                        <p class="proj-desc">A Python web app that turns any release — album, EP, or single — into a poster-style wallpaper, with artwork, tracklist and runtime composed server-side with Pillow at full resolution. Built without front-end frameworks in pure HTML and CSS; live and in active use.</p>
+                        <div class="proj-tech"><span>Python</span><span>Flask</span><span>Pillow</span><span>MusicBrainz</span><span>HTML / CSS</span></div>
+                        <div class="proj-links"><a class="proj-link" href="https://resleeve.marsphobos.com" target="_blank" rel="noopener noreferrer">Visit site <span class="arrow">↗</span></a></div>
+                    </div>
+                </article>
+
+                <article class="proj reveal">
+                    <figure class="proj-media">
+                        <div class="plate shot" style="background-image:url('assets/projects/lodestone.jpg')">
+                            <div class="plate-top"><span>Desktop · Open source</span><span class="stage prod">● Released</span></div>
+                            <div class="plate-word">Lodestone</div>
+                            <div class="plate-url">Minecraft mod manager</div>
+                        </div>
+                    </figure>
+                    <div class="proj-body">
+                        <span class="proj-no">03</span>
+                        <h3 class="proj-title">Lodestone</h3>
+                        <div class="proj-kicker">Minecraft mod manager · Rust</div>
+                        <p class="proj-desc">A desktop tool written in Rust for managing Minecraft mods. Sorts client and server mods using community classification, so you can actually keep track of what's in a modpack.</p>
+                        <div class="proj-tech"><span>Rust</span><span>GUI</span><span>Systems</span></div>
+                        <div class="proj-links"><a class="proj-link" href="https://github.com/marsphobos01/lodestone" target="_blank" rel="noopener noreferrer">View on GitHub <span class="arrow">↗</span></a></div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-head reveal">
+                <h2>About</h2>
+                <span class="count">marsphobos · Wakefield &amp; Newcastle, UK</span>
+            </div>
             <div class="about-grid">
-                <div class="about-copy">
-                    <div class="section-head reveal">
-                        <p class="eyebrow">intro</p>
-                        <h2>About me</h2>
-                    </div>
-                    <div class="reveal">
-                    <p>Hi, I’m Morgan — online I go by <em>mars_phobos</em>. I’m a full-time Networks and Cybersecurity student at Northumbria University in the UK. Outside of uni, I build software and full-stack projects for both clients and personal exploration. I’m a massive music nerd, and that is often evident on the type of projects that I build!</p>
-                    <p>I learn the best through hands-on experience, which is one of the reasons I love exploring my own projects. I get to learn new things, new skills, while also creating something that I am proud of, and that other people can find useful and /or get enjoyment out of.</p>
-
+                <div class="about-copy reveal">
+                    <p>I'm Morgan Bennett, a full-stack developer based between Wakefield and Newcastle, currently studying <span class="accentword">Networks &amp; Cybersecurity</span> at Northumbria University. I design, build and ship production software — web apps, REST APIs and desktop tools — and I run the infrastructure it lives on.</p>
+                    <p class="dim">I work across the stack and choose the right tool for each problem: Python and Flask for backends and data, Rust for systems and desktop applications, and TypeScript with modern CSS on the front end. Just as importantly, I <span class="accentword">self-host my own projects</span> on a Proxmox/Docker homelab — VLAN-segmented networking, firewalls, Cloudflare for DNS and Zero Trust access, and Tailscale for secure remote administration. I've completed CCNA 1 through the Cisco Networking Academy. Several of my projects are live and in active use; I'm currently seeking a placement, graduate or freelance opportunity across development, networking and security.</p>
+                    <div class="skills">
+                        <div class="row"><span class="cat">Languages</span><span class="items">Python · Rust · TypeScript · JavaScript · PHP · Lua</span></div>
+                        <div class="row"><span class="cat">Web &amp; Backend</span><span class="items">Flask · REST APIs · PostgreSQL · SQLite · HTML / CSS</span></div>
+                        <div class="row"><span class="cat">Infrastructure</span><span class="items">Proxmox · Docker · Linux server admin · Cloudflare (DNS, Zero Trust)</span></div>
+                        <div class="row"><span class="cat">Networking &amp; Security</span><span class="items">TCP/IP · VLANs · firewalls · Cloudflare · Tailscale · CCNA 1</span></div>
                     </div>
                 </div>
-                <div class="info-card reveal">
-                    <h3>Skills</h3>
-                    <div class="pill-grid">
-                        <span class="pill">Python</span>
-                        <span class="pill">Rust</span>
-                        <span class="pill">Lua</span>
-                        <span class="pill">JavaScript</span>
-                        <span class="pill">TypeScript</span>
-                        <span class="pill">HTML/CSS</span>
-                        <span class="pill">Flask</span>
-                        <span class="pill">Backend Development</span>
-                        <span class="pill">REST APIs</span>
-                        <span class="pill">PostgreSQL</span>
-                        <span class="pill">Linux</span>
-                        <span class="pill">Networking</span>
-                        <span class="pill">Figma</span>
-                        <span class="pill">UI/UX Design</span>
-                        <span class="pill">Version Control</span>
-
-                    </div>
+                <div class="about-aside reveal">
+                    <figure class="portrait"><img src="assets/portrait.jpg" alt="Morgan Bennett" width="1000" height="1250"></figure>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="work" class="section work-section">
-    <div class="container">
-        <div class="section-shell">
-            <div class="section-head reveal">
-                <p class="eyebrow">PROJECTS</p>
-                <h2>Finished Work</h2>
-            </div>
-            <div class="project-list">
-                <!-- BWS -->
-                <article class="project reveal">
-                    <div class="project-cover">
-                        <img src="img.png" alt="BWS preview">
-                        <div class="project-action">
-                            <a class="btn link" href="https://bespokewatersolutions.co.uk" target="_blank" rel="noreferrer">View</a>
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <div class="project-top">
-                            <h3>Bespoke Water Solutions</h3>
-                        </div>
-                        <p>A fully responsive business website designed and developed for a real UK client in the water pump industry. The site features a professional, conversion-focused layout with a strong hero section, a structured product catalogue spanning six categories, and an integrated contact form — all built with a clean, brand-consistent design. This project demonstrates my ability to deliver polished, client-ready websites that effectively communicate a business's services and drive user engagement.</p>
-                        <div class="project-tech">
-                            <span>JavaScript</span>
-                            <span>HTML/CSS</span>
-                        </div>
-                    </div>
-                </article>
-            <!-- RESLEVE -->
-                <article class="project reveal">
-                    <div class="project-cover">
-                        <img src="resleeve%20logo.png" alt="Resleeve preview">
-                        <div class="project-action">
-                            <a class="btn link" href="https://resleeve.marsphobos.com" target="_blank" rel="noreferrer">View</a>
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <div class="project-top">
-                            <h3>Resleeve</h3>
-                        </div>
-                        <p>Resleeve is a Python-based application that automatically generates custom wallpapers inspired by music albums. Users simply input an artist name or album title, and the software creates stylized wallpapers featuring the album artwork, complete tracklist, runtime information, and other album details arranged in an aesthetic poster-style layout.</p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Flask</span>
-                            <span>Bootstrap</span>
-                            <span>HTML/CSS</span>
-                        </div>
-                    </div>
-                </article>
-                <!-- Lodestone -->
-                <article class="project reveal">
-                    <div class="project-cover">
-                        <img src="lodestone%20logo.png" alt="Lodestone preview">
-                        <div class="project-action">
-                            <a class="btn link" href="https://musicranker.duckdns.org" target="_blank" rel="noreferrer">View</a>
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <div class="project-top">
-                            <h3>Lodestone</h3>
-                        </div>
-                        <p>Lodestone is a GUI-based application that helps identify and manage client-side and server-side Minecraft mods through community-driven classification modules. Whether you're a server administrator cleaning up a modpack or a player organizing your mod collection, Lodestone streamlines the process of categorizing and managing your mods.</p>
-                        <div class="project-tech">
-                            <span>Rust</span>
-                        </div>
-                    </div>
-                </article>
-                
+    <!-- ===== CONTACT ===== -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <span class="eyebrow reveal">Contact</span>
+            <h2 class="reveal">Get in touch<span class="dot">.</span></h2>
+            <a class="contact-email reveal" href="mailto:dev@marsphobos.com">dev@marsphobos.com</a>
+            <div class="contact-foot reveal">
+                <div class="socials">
+                    <a href="https://github.com/m4r5-ph0b05" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://www.linkedin.com/in/morgan-bennett-817800295/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://x.com/mars_ph0b05" target="_blank" rel="noopener noreferrer">X</a>
+                    <a href="https://www.instagram.com/m_4rs_/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                </div>
+                <span class="place">Available for placements, graduate roles, freelance &amp; collaborations</span>
             </div>
         </div>
-    </div>
-</section>
-
-<section id="contact" class="section">
-    <div class="container">
-        <div class="section-shell">
-            <div class="section-head reveal">
-                <p class="eyebrow">Contact</p>
-                <h2>Let's build something</h2>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-card reveal">
-                    <h3>Open to collaborations</h3>
-                    <p>Need a secure web build, a music-related prototype, or a clean redesign? I am open to new projects. <br><strong>Email: <a href="mailto:morganbennett100@gmail.com">morganbennett100@gmail.com</a></strong></p>
-                </div>
-                <div class="contact-card reveal">
-                    <h3>Find me online</h3>
-                    <p>Follow the work or reach out through the platforms below.</p>
-                    <div class="links">
-                        <a href="https://github.com/m4r5-ph0b05" target="_blank" rel="noreferrer">GitHub</a>
-                        <a href="https://www.linkedin.com/in/morgan-bennett-817800295/" target="_blank" rel="noreferrer">LinkedIn</a>
-                        <a href="https://x.com/mars_ph0b05" target="_blank" rel="noreferrer">X</a>
-                        <a href="https://www.instagram.com/m_4rs_/" target="_blank" rel="noreferrer">Instagram</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
+</main>
 
 <footer>
-    <div class="container">
-        <p>2025 Morgan Bennett (mars_phobos). All rights reserved.</p>
+    <div class="container footer-grid">
+        <span>© <span id="year">2026</span> Morgan Bennett — marsphobos</span>
+        <a href="#top">Back to top ↑</a>
     </div>
 </footer>
 
+<script src="main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
+    // ===== Hero 3D — Mars system =====
+    (function () {
+        var canvas = document.getElementById("gem");
+        if (!canvas || typeof THREE === "undefined") { if (canvas) canvas.style.display = "none"; return; }
 
-    menuToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("open");
-        const isOpen = navLinks.classList.contains("open");
-        menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    });
+        var renderer;
+        try { renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); }
+        catch (e) { canvas.style.display = "none"; return; }
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener("click", event => {
-            const targetId = link.getAttribute("href");
-            const target = document.querySelector(targetId);
-            if (target) {
-                event.preventDefault();
-                navLinks.classList.remove("open");
-                menuToggle.setAttribute("aria-expanded", "false");
-                target.scrollIntoView({ behavior: "smooth", block: "start" });
+        var scene  = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(42, 1, 0.1, 200);
+        camera.position.z = 13;
+
+        // Environment map — same warm/cool gradient as original gem
+        var envCanvas = document.createElement("canvas");
+        envCanvas.width = 64; envCanvas.height = 256;
+        var eg = envCanvas.getContext("2d");
+        var grad = eg.createLinearGradient(0, 0, 0, 256);
+        grad.addColorStop(0.00, "#f3b88e");
+        grad.addColorStop(0.34, "#7a3a22");
+        grad.addColorStop(0.62, "#10141c");
+        grad.addColorStop(1.00, "#4a7ec0");
+        eg.fillStyle = grad; eg.fillRect(0, 0, 64, 256);
+        var erg = eg.createRadialGradient(32, 52, 2, 32, 52, 48);
+        erg.addColorStop(0, "rgba(255,240,222,0.7)"); erg.addColorStop(1, "rgba(255,240,222,0)");
+        eg.fillStyle = erg; eg.fillRect(0, 0, 64, 256);
+        var envTex = new THREE.CanvasTexture(envCanvas);
+        envTex.mapping = THREE.EquirectangularReflectionMapping;
+        scene.environment = envTex;
+
+        // System group — intro scale + mouse parallax (same as original)
+        var system = new THREE.Group();
+        scene.add(system);
+        var marsTilt = new THREE.Group();
+        marsTilt.rotation.z = 0.44; // ~25° axial tilt, same as real Mars
+        system.add(marsTilt);
+        var spin = new THREE.Group();
+        marsTilt.add(spin);
+
+        // Stars
+        var starCount = 300;
+        var starPos = new Float32Array(starCount * 3);
+        for (var si = 0; si < starCount; si++) {
+            var sa = Math.random() * Math.PI * 2;
+            var sb = Math.acos(2 * Math.random() - 1);
+            var sr = 65 + Math.random() * 35;
+            starPos[si*3]   = sr * Math.sin(sb) * Math.cos(sa);
+            starPos[si*3+1] = sr * Math.sin(sb) * Math.sin(sa);
+            starPos[si*3+2] = sr * Math.cos(sb);
+        }
+        var starGeo = new THREE.BufferGeometry();
+        starGeo.setAttribute("position", new THREE.BufferAttribute(starPos, 3));
+        system.add(new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.22, transparent: true, opacity: 0.5 })));
+
+        // Mars — faceted icosahedron, flat shading picks up env reflections same as gem
+        var MARS_R = 1.8;
+        var marsMesh = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(MARS_R, 3),
+            new THREE.MeshStandardMaterial({ color: 0xc05020, metalness: 0.35, roughness: 0.5, flatShading: true, envMapIntensity: 1.4 })
+        );
+        spin.add(marsMesh);
+
+        // Atmospheric haze — subtle outer glow (BackSide renders inner faces, seen from outside as a halo)
+        spin.add(new THREE.Mesh(
+            new THREE.SphereGeometry(MARS_R * 1.07, 20, 20),
+            new THREE.MeshStandardMaterial({ color: 0xd06030, transparent: true, opacity: 0.07, side: THREE.BackSide })
+        ));
+
+        // Mars hit sphere — on system (not spin) so it stays centered regardless of Mars's rotation
+        var bldgHit = new THREE.Mesh(new THREE.SphereGeometry(MARS_R * 1.05, 12, 12), new THREE.MeshBasicMaterial({ visible: false }));
+        system.add(bldgHit);
+
+        // Orbit ring — drawn in XY plane so it always faces the camera and never disappears
+        function orbitRing(r, col) {
+            var pts = [];
+            for (var oi = 0; oi <= 80; oi++) {
+                var oa = (oi / 80) * Math.PI * 2;
+                pts.push(new THREE.Vector3(Math.cos(oa) * r, Math.sin(oa) * r, 0));
             }
+            return new THREE.Line(
+                new THREE.BufferGeometry().setFromPoints(pts),
+                new THREE.LineBasicMaterial({ color: 0x2a1810, transparent: true, opacity: 0.25, depthWrite: false })
+            );
+        }
+
+        // Moon helper — same flat-shaded icosahedra as Mars, just smaller & greyer
+        function makeMoon(radius, color, emissive, emissiveIntensity, orbitR, incl, phase) {
+            var og = new THREE.Group();
+            og.rotation.x = incl;
+            og.rotation.z = phase;
+            system.add(og);
+            var m = new THREE.Mesh(
+                new THREE.IcosahedronGeometry(radius, 1),
+                new THREE.MeshStandardMaterial({
+                    color: color, emissive: emissive, emissiveIntensity: emissiveIntensity,
+                    metalness: 0.45, roughness: 0.55, flatShading: true, envMapIntensity: 1.4
+                })
+            );
+            m.position.x = orbitR;
+            og.add(m);
+            og.add(orbitRing(orbitR, color));
+            var mHit = new THREE.Mesh(new THREE.SphereGeometry(radius * 2.2, 6, 6), new THREE.MeshBasicMaterial({ visible: false }));
+            mHit.position.x = orbitR;
+            og.add(mHit);
+            return { orbitGrp: og, mesh: m, hit: mHit };
+        }
+
+        // Phobos — larger, close, fast. Deimos — smaller, far, slow.
+        var phobos = makeMoon(0.42, 0x8a7060, 0x3a2010, 0.15, 2.9, 0.02, 0);
+        var deimos = makeMoon(0.28, 0x9a8878, 0x3a2818, 0.10, 4.2, 0.05, 1.8);
+
+        // Lights — same dramatic warm/cool contrast as original gem
+        scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+        var lA = new THREE.PointLight(0xc0603a, 2.7, 0); lA.position.set(3.6, 2.2, 3);  scene.add(lA);
+        var lB = new THREE.PointLight(0x4a7ec0, 2.5, 0); lB.position.set(-3.6, -1.6, 2.6); scene.add(lB);
+        var lC = new THREE.PointLight(0xffffff, 1.3, 0); lC.position.set(0, 3.6, -2);   scene.add(lC);
+
+        // Tooltip
+        var tip = document.createElement("div");
+        tip.style.cssText = "position:fixed;background:rgba(20,24,32,.88);color:#f0ebe8;padding:4px 10px;border-radius:6px;font-size:12px;font-family:Syne,sans-serif;font-weight:600;letter-spacing:.06em;pointer-events:none;opacity:0;transition:opacity 140ms;white-space:nowrap;transform:translate(-50%,-130%);z-index:200";
+        document.body.appendChild(tip);
+
+        // Clickables
+        var CLICKABLES = [
+            { mesh: bldgHit,      label: "About · Mars",      fn: function() { var el = document.getElementById("about"); if (el) el.scrollIntoView({ behavior: "smooth" }); } },
+            { mesh: phobos.hit,   label: "Projects · Phobos", fn: function() { window.location.href = "projects.html"; } },
+            { mesh: deimos.hit,   label: "Blog · Deimos",    fn: function() { window.location.href = "blog.html"; } }
+        ];
+        var hitMeshes = [];
+        for (var hi = 0; hi < CLICKABLES.length; hi++) { hitMeshes.push(CLICKABLES[hi].mesh); }
+
+        var rc = new THREE.Raycaster();
+        var mouse2 = new THREE.Vector2(-9, -9);
+        var hoveredItem = null;
+
+        function pickAt(e) {
+            var rect = canvas.getBoundingClientRect();
+            mouse2.x =  ((e.clientX - rect.left) / rect.width)  * 2 - 1;
+            mouse2.y = -((e.clientY - rect.top)  / rect.height) * 2 + 1;
+            rc.setFromCamera(mouse2, camera);
+            var hits = rc.intersectObjects(hitMeshes);
+            if (!hits.length) return null;
+            for (var k = 0; k < CLICKABLES.length; k++) { if (CLICKABLES[k].mesh === hits[0].object) return CLICKABLES[k]; }
+            return null;
+        }
+
+        canvas.addEventListener("mousemove", function(e) {
+            var hit = pickAt(e);
+            hoveredItem = hit;
+            canvas.style.cursor = hit ? "pointer" : "grab";
+            if (hit) {
+                tip.textContent = hit.label; tip.style.left = e.clientX + "px"; tip.style.top = e.clientY + "px"; tip.style.opacity = "1";
+            } else { tip.style.opacity = "0"; }
         });
-    });
+        canvas.addEventListener("mouseleave", function() {
+            hoveredItem = null;
+            canvas.style.cursor = "grab";
+            tip.style.opacity = "0";
+        });
+        canvas.addEventListener("click", function(e) { var h = pickAt(e); if (h) h.fn(); });
 
-    const revealItems = document.querySelectorAll(".reveal");
-    const revealObserver = new IntersectionObserver(
-        entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("is-visible");
-                }
-            });
-        },
-        { threshold: 0.2 }
-    );
+        // Resize
+        function resize() {
+            var r = canvas.getBoundingClientRect();
+            var w = Math.max(1, r.width), h = Math.max(1, r.height);
+            renderer.setSize(w, h, false);
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+        }
+        window.addEventListener("resize", resize);
+        resize();
 
-    revealItems.forEach(item => revealObserver.observe(item));
+        // Animation — same structure as original gem
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        var clock = new THREE.Clock();
+        var intro = 0, elapsed = 0, rotMult = 1.0;
+
+        (function tick() {
+            requestAnimationFrame(tick);
+            var dt = Math.min(clock.getDelta(), 0.05);
+            elapsed += dt;
+            intro = Math.min(intro + dt / 1.4, 1);
+            var ease = 1 - Math.pow(1 - intro, 3);
+            system.scale.setScalar(ease);
+
+            // Smoothly pause rotation when hovering a clickable, resume when not
+            rotMult += ((hoveredItem ? 0.0 : 1.0) - rotMult) * 0.1;
+
+            if (!reduce) {
+                var r = rotMult * dt;
+                spin.rotation.y   += r * 0.3 + (1 - ease) * dt * 4;
+                phobos.orbitGrp.rotation.z += r * 1.1;
+                phobos.mesh.rotation.y += r * 0.5;
+                phobos.mesh.rotation.x += r * 0.2;
+                deimos.orbitGrp.rotation.z += r * 0.35;
+                deimos.mesh.rotation.y -= r * 0.3;
+                deimos.mesh.rotation.z += r * 0.12;
+                system.position.y = Math.sin(elapsed * 0.8) * 0.06;
+            }
+            renderer.render(scene, camera);
+        })();
+    })();
 </script>
 </body>
 </html>
