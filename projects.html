@@ -3,18 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects — Morgan Bennett</title>
-    <meta name="description" content="Everything Morgan Bennett (mars_phobos) has built — web apps, client sites, tools and systems.">
+    <title>Projects — Morgan Bennett | Full-Stack Developer &amp; Homelab</title>
+    <meta name="description" content="Projects by Morgan Bennett — production web apps, client websites and developer tools in Python, Rust, TypeScript and PHP, plus a self-hosted Proxmox/Docker homelab with segmented networking, firewalls, Cloudflare (DNS, Zero Trust) and Tailscale.">
+    <meta name="author" content="Morgan Bennett">
     <meta name="theme-color" content="#f0ebe8">
     <link rel="canonical" href="https://marsphobos.com/projects.html">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Projects — Morgan Bennett">
-    <meta property="og:description" content="Everything I've built — web apps, client sites, tools and systems.">
+    <meta property="og:site_name" content="Morgan Bennett">
+    <meta property="og:title" content="Projects — Morgan Bennett | Full-Stack Developer Portfolio">
+    <meta property="og:description" content="Production web apps, client websites and developer tools built in Python, Rust, TypeScript and PHP.">
     <meta property="og:url" content="https://marsphobos.com/projects.html">
     <meta property="og:image" content="https://marsphobos.com/banner.jpg">
+    <meta property="og:image:alt" content="Morgan Bennett — full-stack developer portfolio">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Projects — Morgan Bennett | Full-Stack Developer">
+    <meta name="twitter:description" content="Production web apps, client websites and developer tools in Python, Rust, TypeScript and PHP.">
+    <meta name="twitter:image" content="https://marsphobos.com/banner.jpg">
+    <meta name="twitter:site" content="@mars_ph0b05">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Projects — Morgan Bennett",
+      "url": "https://marsphobos.com/projects.html",
+      "author": { "@type": "Person", "name": "Morgan Bennett", "url": "https://marsphobos.com/" },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem", "position": 1,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Personal Homelab & Self-Hosted Infrastructure",
+              "url": "https://marsphobos.com/projects.html",
+              "description": "Self-managed Proxmox host running VMs and LXC containers, hosting Dockerised services with VLAN-segmented networking, firewalls, Cloudflare (DNS, Zero Trust) and Tailscale remote access.",
+              "author": { "@type": "Person", "name": "Morgan Bennett" },
+              "keywords": "Proxmox, Docker, Linux, VLANs, firewalls, Cloudflare, Cloudflare Zero Trust, Tailscale, networking, self-hosting"
+            }
+          },
+          {
+            "@type": "ListItem", "position": 2,
+            "item": {
+              "@type": "WebSite",
+              "name": "Bespoke Water Solutions",
+              "url": "https://bespokewatersolutions.co.uk",
+              "description": "Responsive business website for a UK water-pump supplier — product catalogue and PHP enquiry form, shipped to production.",
+              "author": { "@type": "Person", "name": "Morgan Bennett" }
+            }
+          },
+          {
+            "@type": "ListItem", "position": 3,
+            "item": {
+              "@type": "WebApplication",
+              "name": "Resleeve",
+              "url": "https://resleeve.marsphobos.com",
+              "applicationCategory": "MultimediaApplication",
+              "operatingSystem": "Web",
+              "description": "Python web app that turns any release into a poster-style wallpaper, rendered server-side with Pillow.",
+              "author": { "@type": "Person", "name": "Morgan Bennett" }
+            }
+          },
+          {
+            "@type": "ListItem", "position": 4,
+            "item": {
+              "@type": "WebApplication",
+              "name": "Score",
+              "url": "https://musicranker.duckdns.org",
+              "applicationCategory": "MultimediaApplication",
+              "operatingSystem": "Web",
+              "description": "Music ranking and scoring web app backed by PostgreSQL and the Spotify API.",
+              "author": { "@type": "Person", "name": "Morgan Bennett" }
+            }
+          },
+          {
+            "@type": "ListItem", "position": 5,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Lodestone",
+              "url": "https://github.com/m4r5-ph0b05",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Windows, macOS, Linux",
+              "description": "Open-source Rust desktop app for identifying and managing Minecraft mods.",
+              "author": { "@type": "Person", "name": "Morgan Bennett" }
+            }
+          }
+        ]
+      }
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +106,7 @@
     <div class="container nav">
         <a href="index.html" class="brand">Morgan Bennett</a>
         <nav class="nav-links" id="navLinks" aria-label="Primary">
+            <a href="index.html">Home</a>
             <a href="projects.html" aria-current="page">Projects</a>
             <a href="blog.html">Blog</a>
             <a href="index.html#about">About</a>
@@ -40,12 +120,26 @@
     <div class="container page-head">
         <span class="eyebrow reveal">Projects</span>
         <h1 class="reveal">Everything I've built<span class="dot">.</span></h1>
-        <p class="reveal">Client work, web apps and tools — shipped and in progress. Each one is a chance to pick up a new language or system and make something people actually use.</p>
+        <p class="reveal">Client work, web apps and developer tools — built end-to-end, from design through to deployment, and shipped to production. A selection of full-stack projects in Python, Rust, TypeScript and PHP.</p>
     </div>
 
     <section class="section" style="padding-top: 0;">
         <div class="container">
             <div class="cards">
+
+                <article class="card reveal">
+                    <figure class="proj-media">
+                        <div class="plate">
+                            <div class="plate-top"><span>Infrastructure · Ongoing</span><span class="live">● Running</span></div>
+                            <div class="plate-word">Homelab</div>
+                            <div class="plate-url">Proxmox · Docker · networking</div>
+                        </div>
+                    </figure>
+                    <h3 class="proj-title">Personal Homelab &amp; Self-Hosted Infrastructure</h3>
+                    <div class="proj-kicker">Proxmox · Docker · networking · Cloudflare</div>
+                    <p class="proj-desc">The infrastructure behind my live projects: a self-managed Proxmox host running VMs and LXC containers, with my apps deployed as Dockerised services. VLAN-segmented networking and firewall rules keep things isolated; DNS and public access are handled through Cloudflare (Zero Trust), with Tailscale for secure remote administration. This is where I apply what I study — TCP/IP, network security and CCNA 1 — hands-on.</p>
+                    <div class="proj-tech"><span>Proxmox</span><span>Docker</span><span>Linux</span><span>VLANs</span><span>Cloudflare</span><span>Tailscale</span></div>
+                </article>
 
                 <article class="card reveal">
                     <figure class="proj-media">
@@ -71,9 +165,9 @@
                         </div>
                     </figure>
                     <h3 class="proj-title">Resleeve</h3>
-                    <div class="proj-kicker">Album-to-wallpaper generator</div>
-                    <p class="proj-desc">A Python web app that turns any album into a poster-style wallpaper. Enter an artist or album and it composes the artwork, full tracklist, runtime and credits into a clean, downloadable layout.</p>
-                    <div class="proj-tech"><span>Python</span><span>Flask</span><span>Bootstrap</span><span>HTML / CSS</span></div>
+                    <div class="proj-kicker">Release-to-wallpaper generator · V2.0</div>
+                    <p class="proj-desc">A Python web app that turns any release — album, EP, or single — into a poster-style wallpaper. A multi-step wizard walks you through picking a theme, background style, and effects; Pillow renders it server-side at wallpaper resolution with layout, palette and typography all adapted to the release. Built entirely without frameworks — custom CSS, custom rendering engine, three layout templates each with desktop and mobile variants.</p>
+                    <div class="proj-tech"><span>Python</span><span>Flask</span><span>Pillow</span><span>MusicBrainz</span><span>HTML / CSS</span></div>
                     <div class="proj-links"><a class="proj-link" href="https://resleeve.marsphobos.com" target="_blank" rel="noopener noreferrer">Visit site <span class="arrow">↗</span></a></div>
                 </article>
 

@@ -3,18 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog — Morgan Bennett</title>
-    <meta name="description" content="Notes and write-ups from Morgan Bennett (mars_phobos) on the projects I build — what I learned, what broke, and how I shipped it.">
+    <title>Blog — Morgan Bennett | Build Logs &amp; Engineering Notes</title>
+    <meta name="description" content="Build logs and engineering write-ups by Morgan Bennett, full-stack developer — how I design, build and ship real projects in Python, Rust and TypeScript, and what I learned along the way.">
+    <meta name="author" content="Morgan Bennett">
     <meta name="theme-color" content="#f0ebe8">
     <link rel="canonical" href="https://marsphobos.com/blog.html">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Blog — Morgan Bennett">
-    <meta property="og:description" content="Notes and write-ups on the projects I build.">
+    <meta property="og:site_name" content="Morgan Bennett">
+    <meta property="og:title" content="Blog — Morgan Bennett | Build Logs &amp; Engineering Notes">
+    <meta property="og:description" content="Build logs and engineering write-ups on the projects I design, build and ship.">
     <meta property="og:url" content="https://marsphobos.com/blog.html">
     <meta property="og:image" content="https://marsphobos.com/banner.jpg">
+    <meta property="og:image:alt" content="Morgan Bennett — developer blog">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog — Morgan Bennett | Build Logs &amp; Engineering Notes">
+    <meta name="twitter:description" content="Build logs and engineering write-ups on the projects I design, build and ship.">
+    <meta name="twitter:image" content="https://marsphobos.com/banner.jpg">
+    <meta name="twitter:site" content="@mars_ph0b05">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Morgan Bennett — Blog",
+      "url": "https://marsphobos.com/blog.html",
+      "author": { "@type": "Person", "name": "Morgan Bennett", "url": "https://marsphobos.com/" },
+      "blogPost": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Remastering Resleeve: rebuilding it properly",
+          "url": "https://marsphobos.com/posts/remastering-resleeve.html",
+          "datePublished": "2026-06-27",
+          "author": { "@type": "Person", "name": "Morgan Bennett" }
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Building Resleeve: turning albums into wallpapers",
+          "url": "https://marsphobos.com/posts/building-resleeve.html",
+          "datePublished": "2026-06-25",
+          "author": { "@type": "Person", "name": "Morgan Bennett" }
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Welcome — why I'm writing this blog",
+          "url": "https://marsphobos.com/posts/welcome.html",
+          "datePublished": "2026-06-25",
+          "author": { "@type": "Person", "name": "Morgan Bennett" }
+        }
+      ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +67,7 @@
     <div class="container nav">
         <a href="index.html" class="brand">Morgan Bennett</a>
         <nav class="nav-links" id="navLinks" aria-label="Primary">
+            <a href="index.html">Home</a>
             <a href="projects.html">Projects</a>
             <a href="blog.html" aria-current="page">Blog</a>
             <a href="index.html#about">About</a>
@@ -39,7 +80,7 @@
 <main>
     <div class="container page-head">
         <span class="eyebrow reveal">Blog</span>
-        <h1 class="reveal">Notes &amp; write-ups<span class="dot">.</span></h1>
+        <h1 class="reveal">Blog<span class="dot">.</span></h1>
         <p class="reveal">Thoughts on the things I build — what I was trying to do, what broke along the way, and what I'd do differently next time.</p>
     </div>
 
@@ -48,6 +89,16 @@
             <div class="posts">
 
                 <!-- POST: duplicate this block + the matching post page for each new entry -->
+                <a class="post-row reveal" href="posts/remastering-resleeve.html">
+                    <span class="post-date">27 Jun 2026</span>
+                    <div class="post-main">
+                        <span class="post-tag">Project</span>
+                        <h3>Remastering Resleeve: rebuilding it properly</h3>
+                        <p>How I rebuilt Resleeve from scratch — ditching Bootstrap for a custom wizard UI, three layout templates, server-side Pillow rendering, and a full mobile overhaul.</p>
+                    </div>
+                    <span class="post-arrow">↗</span>
+                </a>
+
                 <a class="post-row reveal" href="posts/building-resleeve.html">
                     <span class="post-date">25 Jun 2026</span>
                     <div class="post-main">
