@@ -71,10 +71,10 @@
             "item": {
               "@type": "WebApplication",
               "name": "Score",
-              "url": "https://musicranker.duckdns.org",
               "applicationCategory": "MultimediaApplication",
               "operatingSystem": "Web",
-              "description": "Music ranking and scoring web app backed by PostgreSQL and the Spotify API.",
+              "creativeWorkStatus": "Planning",
+              "description": "Music ranking and scoring web app in the planning stage — currently being prototyped in Figma, planned around a PostgreSQL data model and the Spotify API.",
               "author": { "@type": "Person", "name": "Morgan Bennett" }
             }
           },
@@ -117,20 +117,20 @@
 </header>
 
 <main>
-    <div class="container page-head">
+    <div class="container page-head page-head--rule">
         <span class="eyebrow reveal">Projects</span>
         <h1 class="reveal">Everything I've built<span class="dot">.</span></h1>
         <p class="reveal">Client work, web apps and developer tools — built end-to-end, from design through to deployment, and shipped to production. A selection of full-stack projects in Python, Rust, TypeScript and PHP.</p>
     </div>
 
-    <section class="section" style="padding-top: 0;">
+    <section class="section" style="padding-top: clamp(2.5rem, 6vh, 4rem);">
         <div class="container">
             <div class="cards">
 
                 <article class="card reveal">
                     <figure class="proj-media">
-                        <div class="plate">
-                            <div class="plate-top"><span>Infrastructure · Ongoing</span><span class="live">● Running</span></div>
+                        <div class="plate shot" style="background-image:url('assets/projects/proxmox.jpg')">
+                            <div class="plate-top"><span>Infrastructure · Ongoing</span><span class="stage prod">● Production</span></div>
                             <div class="plate-word">Homelab</div>
                             <div class="plate-url">Proxmox · Docker · networking</div>
                         </div>
@@ -143,8 +143,8 @@
 
                 <article class="card reveal">
                     <figure class="proj-media">
-                        <div class="plate">
-                            <div class="plate-top"><span>Client · 2025</span><span class="live">● Live</span></div>
+                        <div class="plate shot" style="background-image:url('assets/projects/bespoke.jpg')">
+                            <div class="plate-top"><span>Client · 2025</span><span class="stage prod">● Production</span></div>
                             <div class="plate-word">Bespoke<br>Water&nbsp;Solutions</div>
                             <div class="plate-url">bespokewatersolutions.co.uk</div>
                         </div>
@@ -158,8 +158,8 @@
 
                 <article class="card reveal">
                     <figure class="proj-media">
-                        <div class="plate">
-                            <div class="plate-top"><span>Web app · 2025</span><span class="live">● Live</span></div>
+                        <div class="plate shot" style="background-image:url('assets/projects/resleeve.jpg')">
+                            <div class="plate-top"><span>Web app · 2025</span><span class="stage prod">● Production</span></div>
                             <div class="plate-word">Resleeve</div>
                             <div class="plate-url">resleeve.marsphobos.com</div>
                         </div>
@@ -173,23 +173,22 @@
 
                 <article class="card reveal">
                     <figure class="proj-media">
-                        <div class="plate">
-                            <div class="plate-top"><span>Web app · 2025</span><span class="live">● Live</span></div>
+                        <div class="plate shot" style="background-image:url('assets/projects/score.jpg')">
+                            <div class="plate-top"><span>Web app · 2025</span><span class="stage plan">○ Planning</span></div>
                             <div class="plate-word">Score</div>
-                            <div class="plate-url">musicranker.duckdns.org</div>
+                            <div class="plate-url">Music ranking &amp; scoring</div>
                         </div>
                     </figure>
                     <h3 class="proj-title">Score</h3>
-                    <div class="proj-kicker">Music ranking &amp; scoring app</div>
-                    <p class="proj-desc">A web app for ranking and scoring your favourite music. Build ranked lists from your Spotify library, compare albums and tracks, and keep a personal record of what you actually rate — backed by a PostgreSQL data model.</p>
-                    <div class="proj-tech"><span>Python</span><span>Flask</span><span>PostgreSQL</span><span>Spotify API</span></div>
-                    <div class="proj-links"><a class="proj-link" href="https://musicranker.duckdns.org" target="_blank" rel="noopener noreferrer">Visit site <span class="arrow">↗</span></a></div>
+                    <div class="proj-kicker">Music ranking &amp; scoring app · In design</div>
+                    <p class="proj-desc">A web app for ranking and scoring your favourite music — build ranked lists from your Spotify library, compare albums and tracks, and keep a personal record of what you actually rate. Currently being prototyped in Figma, with the build planned around a PostgreSQL data model and the Spotify API.</p>
+                    <div class="proj-tech"><span>Figma</span><span>Python</span><span>Flask</span><span>PostgreSQL</span><span>Spotify API</span></div>
                 </article>
 
                 <article class="card reveal">
                     <figure class="proj-media">
-                        <div class="plate">
-                            <div class="plate-top"><span>Desktop · Open source</span><span class="live">Rust</span></div>
+                        <div class="plate shot" style="background-image:url('assets/projects/lodestone.jpg')">
+                            <div class="plate-top"><span>Desktop · Open source</span><span class="stage prod">● Released</span></div>
                             <div class="plate-word">Lodestone</div>
                             <div class="plate-url">Minecraft mod manager</div>
                         </div>
@@ -198,7 +197,7 @@
                     <div class="proj-kicker">Minecraft mod manager · Rust</div>
                     <p class="proj-desc">A Rust desktop app for identifying and managing Minecraft mods through community-driven classification — sorting client and server mods so administrators and players can keep a modpack clean and organised.</p>
                     <div class="proj-tech"><span>Rust</span><span>GUI</span><span>Systems</span></div>
-                    <div class="proj-links"><a class="proj-link" href="https://github.com/m4r5-ph0b05" target="_blank" rel="noopener noreferrer">View on GitHub <span class="arrow">↗</span></a></div>
+                    <div class="proj-links"><a class="proj-link" href="https://github.com/marsphobos01/lodestone" target="_blank" rel="noopener noreferrer">View on GitHub <span class="arrow">↗</span></a></div>
                 </article>
 
             </div>

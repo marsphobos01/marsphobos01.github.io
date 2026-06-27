@@ -14,6 +14,7 @@
             navLinks.classList.toggle("open", open);
             menuToggle.classList.toggle("open", open);
             menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+            document.body.classList.toggle("nav-open", open);
         };
         menuToggle.addEventListener("click", () => setMenu(!navLinks.classList.contains("open")));
         navLinks.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
