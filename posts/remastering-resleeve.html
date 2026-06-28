@@ -1,25 +1,25 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remastering Resleeve — Morgan Bennett</title>
-    <meta name="description" content="How I rebuilt Resleeve from scratch — ditching Bootstrap for a custom wizard UI, adding three layout templates, server-side Pillow rendering, and full mobile support.">
+    <title>Remastering Resleeve - Morgan Bennett</title>
+    <meta name="description" content="How I rebuilt Resleeve from scratch - ditching Bootstrap for a custom wizard UI, adding three layout templates, server-side Pillow rendering, and full mobile support.">
     <meta name="theme-color" content="#f0ebe8">
     <link rel="canonical" href="https://marsphobos.com/posts/remastering-resleeve.html">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 
     <meta property="og:type" content="article">
     <meta property="og:title" content="Remastering Resleeve: rebuilding it properly">
-    <meta property="og:description" content="How I rebuilt Resleeve from scratch — custom UI, three layout templates, server-side rendering and full mobile support.">
+    <meta property="og:description" content="How I rebuilt Resleeve from scratch - custom UI, three layout templates, server-side rendering and full mobile support.">
     <meta property="og:url" content="https://marsphobos.com/posts/remastering-resleeve.html">
     <meta property="og:image" content="https://marsphobos.com/banner.jpg">
-    <meta property="og:image:alt" content="Resleeve V2 — rebuilt album-to-wallpaper generator by Morgan Bennett">
+    <meta property="og:image:alt" content="Resleeve V2 - rebuilt album-to-wallpaper generator by Morgan Bennett">
     <meta property="article:published_time" content="2026-06-27">
     <meta property="article:author" content="Morgan Bennett">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Remastering Resleeve: rebuilding it properly">
-    <meta name="twitter:description" content="How I rebuilt Resleeve from scratch — custom UI, three layout templates, server-side rendering and full mobile support.">
+    <meta name="twitter:description" content="How I rebuilt Resleeve from scratch - custom UI, three layout templates, server-side rendering and full mobile support.">
     <meta name="twitter:image" content="https://marsphobos.com/banner.jpg">
     <meta name="twitter:site" content="@mars_ph0b05">
 
@@ -28,7 +28,7 @@
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "Remastering Resleeve: rebuilding it properly",
-      "description": "How I rebuilt Resleeve from scratch — ditching Bootstrap for a custom wizard UI, three layout templates, server-side Pillow rendering, and a full mobile overhaul.",
+      "description": "How I rebuilt Resleeve from scratch - ditching Bootstrap for a custom wizard UI, three layout templates, server-side Pillow rendering, and a full mobile overhaul.",
       "image": "https://marsphobos.com/banner.jpg",
       "datePublished": "2026-06-27",
       "dateModified": "2026-06-27",
@@ -69,32 +69,32 @@
                 <div class="meta"><span>27 Jun 2026</span><span class="tag">Project</span><span>8 min read</span></div>
                 <h1>Remastering Resleeve: rebuilding it properly</h1>
                 <div class="article-body">
-                    <p>After shipping <a href="building-resleeve.html">Resleeve 1.0</a>, I had a working product with one layout template, a Bootstrap frontend, and no customisation. The rendering engine was solid. Everything around it wasn't. I decided to rebuild the whole thing from scratch — not to fix bugs, but to match the quality of the output with the quality of the experience around it.</p>
+                    <p>After shipping <a href="building-resleeve.html">Resleeve 1.0</a>, I had a working product with one layout template, a Bootstrap frontend, and no customisation. The rendering engine was solid. Everything around it wasn't. I decided to rebuild the whole thing from scratch - not to fix bugs, but to match the quality of the output with the quality of the experience around it.</p>
 
                     <h2>No frameworks</h2>
-                    <p>V1 used Bootstrap. V2 uses nothing — no UI framework, no component library, no build step. Just hand-written CSS and a vanilla JS file with zero dependencies. The decision wasn't ideology; it was control. I wanted every pixel to be intentional, and the overhead of working around a framework's opinions on spacing, colour, and interaction would have been greater than owning the styles outright. The result is a leaner, faster stylesheet with no unused rules and no specificity battles.</p>
+                    <p>V1 used Bootstrap. V2 uses nothing - no UI framework, no component library, no build step. Just hand-written CSS and a vanilla JS file with zero dependencies. The decision wasn't ideology; it was control. I wanted every pixel to be intentional, and the overhead of working around a framework's opinions on spacing, colour, and interaction would have been greater than owning the styles outright. The result is a leaner, faster stylesheet with no unused rules and no specificity battles.</p>
 
                     <h2>Architecture: a six-step wizard with live preview</h2>
-                    <p>The biggest structural change was replacing a single form with a multi-step wizard. Six steps — search, select a release, pick a theme, style the background, tweak effects, download — with a live preview that updates server-side from step three onwards. The entire UI state lives in a single plain JS object; no framework, no store, no reactivity layer. Functions read from it and write to it. It's explicit, debuggable, and serialises cleanly into a shareable URL that encodes every configuration choice — template, background type, gradient stops, effect values — so users can share their exact setup with a link.</p>
+                    <p>The biggest structural change was replacing a single form with a multi-step wizard. Six steps - search, select a release, pick a theme, style the background, tweak effects, download - with a live preview that updates server-side from step three onwards. The entire UI state lives in a single plain JS object; no framework, no store, no reactivity layer. Functions read from it and write to it. It's explicit, debuggable, and serialises cleanly into a shareable URL that encodes every configuration choice - template, background type, gradient stops, effect values - so users can share their exact setup with a link.</p>
 
                     <h2>The rendering engine: three templates, six layouts</h2>
-                    <p>V2 has three layout templates — <strong>Nova</strong>, <strong>Atmosphere</strong>, and <strong>Horizon</strong> — each with a desktop and a mobile variant. That's six independent render functions in <code>render_engine.py</code>, each composing the full image with Pillow: drawing the background, placing artwork, laying out the tracklist, rendering the footer stats bar.</p>
+                    <p>V2 has three layout templates - <strong>Nova</strong>, <strong>Atmosphere</strong>, and <strong>Horizon</strong> - each with a desktop and a mobile variant. That's six independent render functions in <code>render_engine.py</code>, each composing the full image with Pillow: drawing the background, placing artwork, laying out the tracklist, rendering the footer stats bar.</p>
 
-                    <p>The hardest engineering in this project was making all six handle every type of release correctly and consistently. The case that exposed the most complexity was singles. A single-track release fed into a layout built for a twenty-song album produces a broken composition — one track rattling around in a column grid designed for forty. Every template needed single-track detection: identify the case, skip the tracklist entirely, and rebalance the remaining elements — artwork, artist name, title — so they're vertically centred in the available canvas space. Six functions, six different spatial calculations, each needing its own centring logic while staying visually consistent with the others. Implementing it once was easy. Implementing it six times without diverging required writing the logic carefully and testing against a wide range of real releases.</p>
+                    <p>The hardest engineering in this project was making all six handle every type of release correctly and consistently. The case that exposed the most complexity was singles. A single-track release fed into a layout built for a twenty-song album produces a broken composition - one track rattling around in a column grid designed for forty. Every template needed single-track detection: identify the case, skip the tracklist entirely, and rebalance the remaining elements - artwork, artist name, title - so they're vertically centred in the available canvas space. Six functions, six different spatial calculations, each needing its own centring logic while staying visually consistent with the others. Implementing it once was easy. Implementing it six times without diverging required writing the logic carefully and testing against a wide range of real releases.</p>
 
                     <h2>Background modes</h2>
                     <p>V2 supports three background types, each with its own controls and render path:</p>
                     <ul>
-                        <li><strong>Solid</strong> — a flat colour, selectable from the extracted palette or via a colour picker.</li>
-                        <li><strong>Gradient</strong> — a multi-stop gradient with an interactive visual editor. Stops are draggable on a rendered bar, colours are assignable from the palette or a native colour picker, and direction is controlled separately. The full gradient definition serialises into the share URL as encoded stop positions and hex values, so a shared link reproduces the exact gradient.</li>
-                        <li><strong>Marble</strong> — a procedurally generated marble texture produced with layered Perlin noise in Pillow. It's seeded, so a saved seed value reproduces the same texture exactly. Dominant colour, scale, and detail are all adjustable.</li>
+                        <li><strong>Solid</strong> - a flat colour, selectable from the extracted palette or via a colour picker.</li>
+                        <li><strong>Gradient</strong> - a multi-stop gradient with an interactive visual editor. Stops are draggable on a rendered bar, colours are assignable from the palette or a native colour picker, and direction is controlled separately. The full gradient definition serialises into the share URL as encoded stop positions and hex values, so a shared link reproduces the exact gradient.</li>
+                        <li><strong>Marble</strong> - a procedurally generated marble texture produced with layered Perlin noise in Pillow. It's seeded, so a saved seed value reproduces the same texture exactly. Dominant colour, scale, and detail are all adjustable.</li>
                     </ul>
 
                     <h2>The preview pipeline</h2>
-                    <p>Every setting change fires a POST to <code>/preview</code> with the full current state serialised as JSON. Flask deserialises it, selects the right render function, runs it, and returns a JPEG. The preview image swaps in place with a loading state while the request is in flight. The final download hits <code>/generate</code> with the same payload at full resolution — 1080p, 1440p, or 4K. Because the preview and download share the same render path, what you see is exactly what you get.</p>
+                    <p>Every setting change fires a POST to <code>/preview</code> with the full current state serialised as JSON. Flask deserialises it, selects the right render function, runs it, and returns a JPEG. The preview image swaps in place with a loading state while the request is in flight. The final download hits <code>/generate</code> with the same payload at full resolution - 1080p, 1440p, or 4K. Because the preview and download share the same render path, what you see is exactly what you get.</p>
 
                     <h2>The details that make it a product</h2>
-                    <p>A lot of what separates a tool from a product is in the details that nobody notices when they're working and everybody notices when they're not. The autocomplete on artist and release search that queries MusicBrainz as you type. The start-over flow that resets state without breaking browser history. The vinyl-card carousel on the landing page — a custom JS component with 3D CSS transforms, a smooth drop animation, and a preloaded set of real wallpapers from the slideshow folder. The way the palette extracted from the cover art populates the accent colour picker, the solid colour options, and the gradient palette suggestions, so every choice in the UI is grounded in the actual artwork you're working with.</p>
+                    <p>A lot of what separates a tool from a product is in the details that nobody notices when they're working and everybody notices when they're not. The autocomplete on artist and release search that queries MusicBrainz as you type. The start-over flow that resets state without breaking browser history. The vinyl-card carousel on the landing page - a custom JS component with 3D CSS transforms, a smooth drop animation, and a preloaded set of real wallpapers from the slideshow folder. The way the palette extracted from the cover art populates the accent colour picker, the solid colour options, and the gradient palette suggestions, so every choice in the UI is grounded in the actual artwork you're working with.</p>
 
                     <blockquote>V1 produced good output. V2 is a product I'm proud to put in front of people.</blockquote>
 
@@ -107,7 +107,7 @@
 
 <footer>
     <div class="container footer-grid">
-        <span>© <span id="year">2026</span> Morgan Bennett — mars_phobos</span>
+        <span>© <span id="year">2026</span> Morgan Bennett - mars_phobos</span>
         <a href="#top">Back to top ↑</a>
     </div>
 </footer>
