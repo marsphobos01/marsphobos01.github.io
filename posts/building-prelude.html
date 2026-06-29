@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Prelude - Morgan Bennett</title>
+    <meta name="description" content="How I pulled the music layer out of my apps into Prelude - a self-caching, rate-limited MusicBrainz gateway built on FastAPI, Postgres, Redis and Celery, shared across the whole stack.">
+    <meta name="theme-color" content="#f0ebe8">
+    <link rel="canonical" href="https://marsphobos.com/posts/building-prelude.html">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Building Prelude: a shared music catalogue for the whole stack">
+    <meta property="og:description" content="A self-caching, rate-limited MusicBrainz gateway built on FastAPI, Postgres, Redis and Celery - the invisible service my other apps run on.">
+    <meta property="og:url" content="https://marsphobos.com/posts/building-prelude.html">
+    <meta property="og:image" content="https://marsphobos.com/banner.jpg">
+    <meta property="og:image:alt" content="Prelude - shared music catalogue service by Morgan Bennett">
+    <meta property="article:published_time" content="2026-06-29">
+    <meta property="article:author" content="Morgan Bennett">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Building Prelude: a shared music catalogue for the whole stack">
+    <meta name="twitter:description" content="A self-caching, rate-limited MusicBrainz gateway built on FastAPI, Postgres, Redis and Celery.">
+    <meta name="twitter:image" content="https://marsphobos.com/banner.jpg">
+    <meta name="twitter:site" content="@mars_ph0b05">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Building Prelude: a shared music catalogue for the whole stack",
+      "description": "How I pulled the music layer out of my apps into Prelude - a self-caching, rate-limited MusicBrainz gateway built on FastAPI, Postgres, Redis and Celery.",
+      "image": "https://marsphobos.com/banner.jpg",
+      "datePublished": "2026-06-29",
+      "dateModified": "2026-06-29",
+      "url": "https://marsphobos.com/posts/building-prelude.html",
+      "mainEntityOfPage": "https://marsphobos.com/posts/building-prelude.html",
+      "author": { "@type": "Person", "name": "Morgan Bennett", "url": "https://marsphobos.com/" },
+      "publisher": { "@type": "Person", "name": "Morgan Bennett" },
+      "keywords": "Python, FastAPI, Postgres, Redis, Celery, caching, rate limiting, microservice, build log"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body id="top">
+
+<header class="site-header" id="header">
+    <div class="container nav">
+        <a href="../index.html" class="brand">Morgan Bennett</a>
+        <nav class="nav-links" id="navLinks" aria-label="Primary">
+            <a href="../index.html">Home</a>
+            <a href="../projects.html">Projects</a>
+            <a href="../blog.html" aria-current="page">Blog</a>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#contact">Contact</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+</header>
+
+<main>
+    <article class="article">
+        <div class="container">
+            <div class="article-inner">
+                <a class="back-link" href="../blog.html">&larr; Back to blog</a>
+                <div class="meta"><span>29 Jun 2026</span><span class="tag">Project</span><span>7 min read</span></div>
+                <h1>Building Prelude: a shared music catalogue for the whole stack</h1>
+                <div class="article-body">
+                    <p>For most of this year I've been building two apps at once: <a href="building-resleeve.html">Resleeve</a>, which turns albums into wallpapers, and Score, a music-ranking app. Different products, but both need the same raw material - data about albums, artists and songs. Both were calling MusicBrainz directly, both were re-fetching the same records over and over, and both were quietly competing for the same rate limit.</p>
+
+                    <p>MusicBrainz allows one request per second, per IP address - and my whole stack sits behind a single IP. Two apps hammering it independently is a good way to get throttled by your own software. So I stopped duplicating the music layer and pulled it out into a service of its own: Prelude. One catalogue that every app talks to instead of MusicBrainz - it caches everything it fetches, and it's the only thing in my stack allowed to talk to the outside world.</p>
+
+                    <h2>The cache is just a table</h2>
+                    <p>The core of Prelude is deliberately unglamorous: a single Postgres table, <code>music_item</code>, keyed by the MusicBrainz ID. Every entity - an album, an artist, a song - is one row: its name, its artist, a cover-art URL, and the full raw response stored as <code>jsonb</code> in case I need a field I didn't extract.</p>
+
+                    <p>The whole service is a read-through cache. A request comes in for an album; Prelude checks the table; if the row is there it comes back in a millisecond and nothing touches the internet. If it isn't, Prelude fetches it, saves the row, and returns it. The first person to ever ask for an album pays the cost; everyone after gets it instantly. The catalogue teaches itself - every miss becomes a future hit, and over time the table fills with exactly the music people actually care about.</p>
+
+                    <h2>Two ways to ask</h2>
+                    <p>There are only two things you can do with Prelude, and keeping them apart mattered. <strong>Get</strong> is retrieval - you have an exact ID and you want that one record. <strong>Search</strong> is discovery - you have the words "ok computer" and you want a list of candidates to pick from. Get is cache-first: check the table, fetch on a miss. Search is authoritative: it always asks MusicBrainz, because my cache only holds a slice of the catalogue and can't be trusted to return a complete list of matches.</p>
+
+                    <p>The fiddly part was deciding <em>what</em> each type points at. MusicBrainz models music more precisely than people think about it - an "album" is a release-group rather than a specific pressing, a "song" is a recording rather than the abstract composition. Picking the level that matches how someone actually means the word, and working out which entity carries the artist name and which one has cover art, took more back-and-forth with the data model than I expected.</p>
+
+                    <h2>The hard part: one request per second</h2>
+                    <p>The interesting engineering in Prelude isn't the cache - it's what happens on a miss. A miss means going out to MusicBrainz, and that one-request-per-second limit is shared across everything I run. If every web request called out the moment it missed the cache, a burst of traffic - or both apps at once - would blow straight through the limit and get the whole stack throttled.</p>
+
+                    <p>So nothing in Prelude calls MusicBrainz directly. Every outbound request is handed to a single background worker - a Celery task behind a Redis queue - and that worker is rate-limited to one request per second. One worker, one queue, one polite connection to the outside world. The cache makes the trip out rare; the queue makes it safe. A web request that misses doesn't fetch anything itself - it drops a job on the queue and waits for the result to show up in the cache.</p>
+
+                    <h2>Behaving under load</h2>
+                    <p>A queue on its own isn't enough; the worker still has to spend its one-per-second budget wisely. Three details do most of that work:</p>
+                    <ul>
+                        <li><strong>De-duplication.</strong> If fifty people request the same brand-new album at the same instant, I don't want fifty identical fetches. Before queuing, a request tries to claim the ID with a single atomic Redis operation (<code>SET &hellip; NX EX</code>); only the first one wins and creates a job, and the rest just wait for the cache to fill. Fifty requests collapse into one fetch.</li>
+                        <li><strong>A negative cache.</strong> Ask for an ID that doesn't exist and the worker leaves a short-lived tombstone in Redis, so the request gets a clean 404 in a second instead of hanging while it waits for a row that's never coming.</li>
+                        <li><strong>An API that never blocks.</strong> The endpoint that waits on a fetch is fully asynchronous - it queues the job, then polls the cache on the event loop, returning the instant the row appears or giving up after a timeout. Dozens of requests can sit parked on a slow fetch without tying up a single thread.</li>
+                    </ul>
+
+                    <h2>Running it for real</h2>
+                    <p>Prelude lives on a small Proxmox container, reaching its Postgres and Redis over a private Tailscale network and exposed to the world through a Cloudflare tunnel. The one twist compared to a normal web app is that it's <em>two</em> processes, not one - the FastAPI server and the Celery worker - each running as its own <code>systemd</code> service so they come back on crash and on boot. A third service runs Flower, Celery's dashboard, so I can watch the queue live: every request coming in, what the worker's fetching, how long it took. That one's kept private over Tailscale - it's an operator's window, not something the public should see.</p>
+
+                    <h2>Public, but not open</h2>
+                    <p>Prelude is reachable on the internet, but it does real work on every miss, so I didn't want it open to anyone. I put Cloudflare Access in front of it: my apps authenticate machine-to-machine with service tokens - their backends send a token header on every call - I get in as a human with an email login, and the only thing left open to the world is the cover-art images, because a browser loading an <code>&lt;img&gt;</code> can't send an auth header. A public URL that only answers to my apps and me.</p>
+
+                    <h2>The invisible piece</h2>
+                    <p>Prelude is the one part of the stack nobody will ever see. No UI, no landing page, nothing to visit - Resleeve calls it, Score will call it, and users just notice that albums load instantly and the artwork is always there.</p>
+
+                    <blockquote>It's the only piece of the stack a user never sees - and the one that makes everything else fast.</blockquote>
+
+                    <p>It's also the most infrastructure-heavy thing I've built: a self-filling cache, a rate-limited job queue, de-duplication, a negative cache, a multi-service deployment behind a private network. None of it shows up on screen, which is exactly the point. The best infrastructure is the kind you forget is running.</p>
+                </div>
+            </div>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <div class="container footer-grid">
+        <span>&copy; <span id="year">2026</span> Morgan Bennett - mars_phobos</span>
+        <a href="#top">Back to top &uarr;</a>
+    </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

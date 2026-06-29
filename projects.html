@@ -70,6 +70,17 @@
             "@type": "ListItem", "position": 4,
             "item": {
               "@type": "WebApplication",
+              "name": "Prelude",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Web",
+              "description": "A self-caching, rate-limited MusicBrainz gateway built on FastAPI, Postgres, Redis and Celery - the shared music layer behind the rest of my apps.",
+              "author": { "@type": "Person", "name": "Morgan Bennett" }
+            }
+          },
+          {
+            "@type": "ListItem", "position": 5,
+            "item": {
+              "@type": "WebApplication",
               "name": "Score",
               "applicationCategory": "MultimediaApplication",
               "operatingSystem": "Web",
@@ -79,7 +90,7 @@
             }
           },
           {
-            "@type": "ListItem", "position": 5,
+            "@type": "ListItem", "position": 6,
             "item": {
               "@type": "SoftwareApplication",
               "name": "Lodestone",
@@ -169,6 +180,21 @@
                     <p class="proj-desc">A Python web app that turns any release - album, EP, or single - into a poster-style wallpaper. A multi-step wizard walks you through picking a theme, background style, and effects; Pillow renders it server-side at wallpaper resolution with layout, palette and typography all adapted to the release. Built entirely without frameworks - custom CSS, custom rendering engine, three layout templates each with desktop and mobile variants.</p>
                     <div class="proj-tech"><span>Python</span><span>Flask</span><span>Pillow</span><span>MusicBrainz</span><span>HTML / CSS</span></div>
                     <div class="proj-links"><a class="proj-link" href="https://resleeve.marsphobos.com" target="_blank" rel="noopener noreferrer">Visit site <span class="arrow">↗</span></a></div>
+                </article>
+
+                <article class="card reveal">
+                    <figure class="proj-media">
+                        <div class="plate shot" style="background-image:url('assets/projects/prelude.jpg')">
+                            <div class="plate-top"><span>Backend service · 2026</span><span class="stage prod">● Production</span></div>
+                            <div class="plate-word">Prelude</div>
+                            <div class="plate-url">Shared music catalogue</div>
+                        </div>
+                    </figure>
+                    <h3 class="proj-title">Prelude</h3>
+                    <div class="proj-kicker">Self-caching music API · FastAPI</div>
+                    <p class="proj-desc">The music layer the rest of my stack runs on - a self-caching, rate-limited gateway to MusicBrainz built on FastAPI. Every album, artist and song the other apps need is fetched once, cached in Postgres and served instantly. A Redis-backed Celery worker funnels all outbound requests through a single rate-limited connection, with de-duplication and a negative cache on top, and the whole service sits behind Cloudflare Access so only my own apps can reach it.</p>
+                    <div class="proj-tech"><span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Redis</span><span>Celery</span></div>
+                    <div class="proj-links"><a class="proj-link" href="posts/building-prelude.html">Read the build log <span class="arrow">↗</span></a></div>
                 </article>
 
                 <article class="card reveal">

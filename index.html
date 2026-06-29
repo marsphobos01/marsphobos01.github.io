@@ -162,19 +162,19 @@
 
                 <article class="proj reveal">
                     <figure class="proj-media">
-                        <div class="plate shot" style="background-image:url('assets/projects/lodestone.jpg')">
-                            <div class="plate-top"><span>Desktop · Open source</span><span class="stage prod">● Released</span></div>
-                            <div class="plate-word">Lodestone</div>
-                            <div class="plate-url">Minecraft mod manager</div>
+                        <div class="plate shot" style="background-image:url('assets/projects/prelude.jpg')">
+                            <div class="plate-top"><span>Backend service · 2026</span><span class="stage prod">● Production</span></div>
+                            <div class="plate-word">Prelude</div>
+                            <div class="plate-url">Shared music catalogue</div>
                         </div>
                     </figure>
                     <div class="proj-body">
                         <span class="proj-no">03</span>
-                        <h3 class="proj-title">Lodestone</h3>
-                        <div class="proj-kicker">Minecraft mod manager · Rust</div>
-                        <p class="proj-desc">A desktop tool written in Rust for managing Minecraft mods. Sorts client and server mods using community classification, so you can actually keep track of what's in a modpack.</p>
-                        <div class="proj-tech"><span>Rust</span><span>GUI</span><span>Systems</span></div>
-                        <div class="proj-links"><a class="proj-link" href="https://github.com/marsphobos01/lodestone" target="_blank" rel="noopener noreferrer">View on GitHub <span class="arrow">↗</span></a></div>
+                        <h3 class="proj-title">Prelude</h3>
+                        <div class="proj-kicker">Self-caching music API · FastAPI</div>
+                        <p class="proj-desc">The music layer the rest of my stack runs on - a self-caching, rate-limited gateway to MusicBrainz built on FastAPI. Albums, artists and songs are fetched once, cached in Postgres and served instantly, with a Redis-backed Celery worker funnelling every outbound request through a single rate-limited connection.</p>
+                        <div class="proj-tech"><span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Redis</span><span>Celery</span></div>
+                        <div class="proj-links"><a class="proj-link" href="posts/building-prelude.html">Read the build log <span class="arrow">↗</span></a></div>
                     </div>
                 </article>
             </div>
