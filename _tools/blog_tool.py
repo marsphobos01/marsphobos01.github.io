@@ -68,6 +68,16 @@ def display_date(iso):
     d = datetime.date.fromisoformat(iso)
     return f"{d.day} {d.strftime('%b %Y')}"
 
+def structured_datetime(iso):
+    d = datetime.date.fromisoformat(iso)
+    try:
+        from zoneinfo import ZoneInfo
+        dt = datetime.datetime(d.year, d.month, d.day, 0, 0, 0, tzinfo=ZoneInfo("Europe/London"))
+        return dt.isoformat()
+    except Exception:
+        offset = "+01:00" if 4 <= d.month <= 10 else "+00:00"
+        return f"{iso}T00:00:00{offset}"
+
 def read_time(body_md):
     words = len(re.findall(r"\w+", body_md or ""))
     return f"{max(1, round(words / 200))} min read"
@@ -108,7 +118,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
     <meta property="og:url" content="@@URL@@">
     <meta property="og:image" content="@@SITE@@/banner.jpg">
     <meta property="og:image:alt" content="Morgan Bennett ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â developer blog">
-    <meta property="article:published_time" content="@@DATE_ISO@@">
+    <meta property="article:published_time" content="@@DATE_TIME@@">
     <meta property="article:author" content="Morgan Bennett">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@@TITLE@@">
@@ -146,7 +156,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
         <div class="container">
             <div class="article-inner">
                 <a class="back-link" href="/blog/">ÃƒÂ¢Ã¢â‚¬Â Ã‚Â Back to blog</a>
-                <div class="meta"><span>@@DATE_DISP@@</span><span class="tag">@@TAG@@</span><span>@@READ@@</span></div>
+                <div class="meta"><time datetime="@@DATE_TIME@@">@@DATE_DISP@@</time><span class="tag">@@TAG@@</span><span>@@READ@@</span></div>
                 <h1>@@TITLE@@</h1>
                 <div class="article-body">
 @@BODY@@
@@ -170,14 +180,15 @@ POST_TEMPLATE = """<!DOCTYPE html>
 
 def build_post_html(title, desc, slug, date_iso, tag, read, body_html):
     url = f"{SITE_URL}/posts/{slug}"
+    date_time = structured_datetime(date_iso)
     jsonld = json.dumps({
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": title,
         "description": desc,
         "image": f"{SITE_URL}/banner.jpg",
-        "datePublished": date_iso,
-        "dateModified": date_iso,
+        "datePublished": date_time,
+        "dateModified": date_time,
         "url": url,
         "mainEntityOfPage": url,
         "author": {"@type": "Person", "name": AUTHOR, "url": f"{SITE_URL}/"},
@@ -185,7 +196,7 @@ def build_post_html(title, desc, slug, date_iso, tag, read, body_html):
     }, indent=2)
     repl = {
         "@@TITLE@@": esc(title), "@@DESC@@": esc(desc), "@@URL@@": url,
-        "@@SITE@@": SITE_URL, "@@DATE_ISO@@": date_iso,
+        "@@SITE@@": SITE_URL, "@@DATE_ISO@@": date_iso, "@@DATE_TIME@@": date_time,
         "@@DATE_DISP@@": esc(display_date(date_iso)), "@@TAG@@": esc(tag),
         "@@READ@@": esc(read), "@@JSONLD@@": jsonld, "@@BODY@@": body_html,
     }
@@ -195,10 +206,11 @@ def build_post_html(title, desc, slug, date_iso, tag, read, body_html):
     return out
 
 # ---------------------------------------------------------------- file edits
-def insert_blog_row(title, desc, slug, date_disp, tag):
+def insert_blog_row(title, desc, slug, date_iso, date_disp, tag):
+    date_time = structured_datetime(date_iso)
     row = (
         '\n                <a class="post-row reveal" href="/posts/' + slug + '">\n'
-        '                    <span class="post-date">' + esc(date_disp) + '</span>\n'
+        '                    <time class="post-date" datetime="' + date_time + '">' + esc(date_disp) + '</time>\n'
         '                    <div class="post-main">\n'
         '                        <span class="post-tag">' + esc(tag) + '</span>\n'
         '                        <h3>' + esc(title) + '</h3>\n'
@@ -214,12 +226,14 @@ def insert_blog_row(title, desc, slug, date_disp, tag):
     BLOG_FILE.write_text(content.replace(anchor, anchor + row, 1), encoding="utf-8")
 
 def insert_jsonld(title, slug, date_iso):
+    date_time = structured_datetime(date_iso)
     entry = (
         '        {\n'
         '          "@type": "BlogPosting",\n'
         '          "headline": ' + json.dumps(title) + ',\n'
         '          "url": "' + SITE_URL + '/posts/' + slug + '",\n'
-        '          "datePublished": "' + date_iso + '",\n'
+        '          "datePublished": "' + date_time + '",\n'
+        '          "dateModified": "' + date_time + '",\n'
         '          "author": { "@type": "Person", "name": "' + AUTHOR + '" }\n'
         '        },\n'
     )
@@ -266,7 +280,7 @@ def save():
         POSTS_DIR.mkdir(exist_ok=True)
         body_html = md_to_html(body)
         post_path.write_text(build_post_html(title, desc, slug, date_iso, tag, read, body_html), encoding="utf-8")
-        insert_blog_row(title, desc, slug, display_date(date_iso), tag)
+        insert_blog_row(title, desc, slug, date_iso, display_date(date_iso), tag)
         insert_jsonld(title, slug, date_iso)
         insert_sitemap(slug, date_iso)
     except Exception as e:

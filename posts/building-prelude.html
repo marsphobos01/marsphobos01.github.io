@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://www.marsphobos.com/posts/building-prelude.html">
     <meta property="og:image" content="https://www.marsphobos.com/banner.jpg">
     <meta property="og:image:alt" content="Prelude - shared music catalogue service by Morgan Bennett">
-    <meta property="article:published_time" content="2026-06-29">
+    <meta property="article:published_time" content="2026-06-29T00:00:00+01:00">
     <meta property="article:author" content="Morgan Bennett">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Building Prelude: a shared music catalogue for the whole stack">
@@ -30,8 +30,8 @@
       "headline": "Building Prelude: a shared music catalogue for the whole stack",
       "description": "How I pulled the music layer out of my apps into Prelude - a self-caching, rate-limited MusicBrainz gateway built on FastAPI, Postgres, Redis and Celery.",
       "image": "https://www.marsphobos.com/banner.jpg",
-      "datePublished": "2026-06-29",
-      "dateModified": "2026-06-29",
+      "datePublished": "2026-06-29T00:00:00+01:00",
+      "dateModified": "2026-06-29T00:00:00+01:00",
       "url": "https://www.marsphobos.com/posts/building-prelude.html",
       "mainEntityOfPage": "https://www.marsphobos.com/posts/building-prelude.html",
       "author": { "@type": "Person", "name": "Morgan Bennett", "url": "https://www.marsphobos.com/" },
@@ -66,7 +66,7 @@
         <div class="container">
             <div class="article-inner">
                 <a class="back-link" href="/blog/">&larr; Back to blog</a>
-                <div class="meta"><span>29 Jun 2026</span><span class="tag">Project</span><span>7 min read</span></div>
+                <div class="meta"><time datetime="2026-06-29T00:00:00+01:00">29 Jun 2026</time><span class="tag">Project</span><span>7 min read</span></div>
                 <h1>Building Prelude: a shared music catalogue for the whole stack</h1>
                 <div class="article-body">
                     <p>For most of this year I've been building two apps at once: <a href="building-resleeve.html">Resleeve</a>, which turns albums into wallpapers, and Score, a music-ranking app. Different products, but both need the same raw material - data about albums, artists and songs. Both were calling MusicBrainz directly, both were re-fetching the same records over and over, and both were quietly competing for the same rate limit.</p>
