@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resleeve Case Study | Python Album Wallpaper Generator</title>
+    <meta name="description" content="Case study for Resleeve, a Python and Flask web app that turns music releases into high-resolution poster-style wallpapers with Pillow and MusicBrainz metadata.">
+    <meta name="author" content="Morgan Bennett">
+    <meta name="theme-color" content="#f0ebe8">
+    <link rel="canonical" href="https://www.marsphobos.com/projects/resleeve/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Morgan Bennett">
+    <meta property="og:title" content="Resleeve Case Study | Python Album Wallpaper Generator">
+    <meta property="og:description" content="How Resleeve renders release metadata, artwork and tracklists into custom high-resolution wallpapers.">
+    <meta property="og:url" content="https://www.marsphobos.com/projects/resleeve/">
+    <meta property="og:image" content="https://www.marsphobos.com/assets/projects/resleeve.jpg">
+    <meta property="og:image:alt" content="Resleeve album wallpaper generator screenshot">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Resleeve Case Study">
+    <meta name="twitter:description" content="A Python and Flask product for generating high-resolution album wallpapers.">
+    <meta name="twitter:image" content="https://www.marsphobos.com/assets/projects/resleeve.jpg">
+    <meta name="twitter:site" content="@mars_ph0b05">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.marsphobos.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://www.marsphobos.com/projects/" },
+        { "@type": "ListItem", "position": 3, "name": "Resleeve", "item": "https://www.marsphobos.com/projects/resleeve/" }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Resleeve",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Web",
+      "url": "https://resleeve.marsphobos.com",
+      "image": "https://www.marsphobos.com/assets/projects/resleeve.jpg",
+      "description": "A Python web app that turns any release into a poster-style wallpaper rendered server-side with Pillow.",
+      "author": { "@type": "Person", "name": "Morgan Bennett", "url": "https://www.marsphobos.com/" },
+      "creator": { "@type": "Person", "name": "Morgan Bennett" }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body id="top">
+<header class="site-header" id="header">
+    <div class="container nav">
+        <a href="/" class="brand">Morgan Bennett</a>
+        <nav class="nav-links" id="navLinks" aria-label="Primary">
+            <a href="/">Home</a><a href="/projects/" aria-current="page">Projects</a><a href="/blog/">Blog</a><a href="/about/">About</a><a href="/#contact">Contact</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+</header>
+<main>
+    <article class="case">
+        <div class="container page-head page-head--rule">
+            <nav class="breadcrumbs reveal" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/projects/">Projects</a><span>/</span><span>Resleeve</span></nav>
+            <span class="eyebrow reveal">Case study</span>
+            <h1 class="reveal">Resleeve<span class="dot">.</span></h1>
+            <p class="reveal">A Python web app that turns any music release into a high-resolution poster-style wallpaper, with artwork, tracklist and runtime composed server-side with Pillow.</p>
+        </div>
+        <div class="container case-hero">
+            <img src="/assets/projects/resleeve.jpg" alt="Screenshot of the Resleeve album wallpaper generator interface" width="1200" height="750" loading="eager">
+        </div>
+        <div class="container case-grid">
+            <div class="case-main">
+                <h2>Project summary</h2>
+                <p>Resleeve started as a simple idea: make clean, personal album wallpapers without hunting for fan art or designing each one by hand. The product grew into a multi-step Flask app with MusicBrainz search, custom visual settings, palette-aware themes and full-resolution server-side rendering.</p>
+                <h2>Problem being solved</h2>
+                <p>Music fans often want high-quality visuals for albums and singles, but available images are usually low resolution, generic, watermarked or disconnected from the release metadata. Resleeve combines authoritative release data with user-controlled design choices and produces a finished wallpaper in one flow.</p>
+                <h2>Target users</h2>
+                <p>The primary users are music fans, playlist curators and people who want personal desktop or mobile backgrounds based on specific releases. The interface is built for non-technical users: search, select, style, preview and download.</p>
+                <h2>Architecture overview</h2>
+                <p>The Flask backend handles search and rendering. Music metadata comes from MusicBrainz and cover art is retrieved through the Cover Art Archive. Pillow composes the output image on the server, applying adaptive layout rules for albums, EPs and singles. The frontend is a vanilla HTML, CSS and JavaScript wizard with no framework dependency.</p>
+                <h2>Important technical decisions</h2>
+                <p>I kept rendering server-side because it gives predictable typography, image quality and export dimensions. I avoided a frontend framework to keep the interface fast and controlled. Layout templates are separate render paths so each design can make its own spatial decisions instead of forcing every output through one generic engine.</p>
+                <h2>Difficult problems and solutions</h2>
+                <p>The hardest part was making layouts survive the variety of real music data: single-track releases, long deluxe albums, missing artwork and wildly different cover palettes. Resleeve handles those with release-type checks, adaptive text sizing, column balancing and contrast-aware colour choices.</p>
+                <h2>Results and lessons learned</h2>
+                <p>Resleeve is live and actively usable. It taught me that image generation products live or die by edge cases: the code can be straightforward, but the judgement encoded into spacing, contrast and fallback behaviour is what makes the output feel finished.</p>
+                <h2>Related writing</h2>
+                <p><a href="/posts/building-resleeve/">Building Resleeve: turning albums into wallpapers</a> and <a href="/posts/remastering-resleeve/">Remastering Resleeve: rebuilding it properly</a>.</p>
+            </div>
+            <aside class="case-aside">
+                <div class="case-facts"><span>Python</span><span>Flask</span><span>Pillow</span><span>MusicBrainz</span><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                <a class="btn btn--accent" href="https://resleeve.marsphobos.com" target="_blank" rel="noopener noreferrer">Open live project</a>
+                <a class="btn btn--lineInk" href="/projects/prelude/">Related: Prelude</a>
+            </aside>
+        </div>
+    </article>
+</main>
+<footer><div class="container footer-grid"><span>&copy; <span id="year">2026</span> Morgan Bennett - mars_phobos</span><a href="#top">Back to top</a></div></footer>
+<script src="/main.js"></script>
+</body>
+</html>

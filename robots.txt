@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://marsphobos.com/sitemap.xml
+Sitemap: https://www.marsphobos.com/sitemap.xml

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-blog_tool.py — a tiny local publishing UI for marsphobos.com
+blog_tool.py ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â a tiny local publishing UI for marsphobos.com
 
 Run:
     pip install flask markdown
@@ -50,7 +50,7 @@ SITE_ROOT = _find_site_root(Path(__file__).resolve().parent)
 POSTS_DIR = SITE_ROOT / "posts"
 BLOG_FILE = SITE_ROOT / "blog.html"
 SITEMAP   = SITE_ROOT / "sitemap.xml"
-SITE_URL  = "https://marsphobos.com"
+SITE_URL  = "https://www.marsphobos.com"
 AUTHOR    = "Morgan Bennett"
 
 esc = lambda s: html.escape(s or "", quote=True)
@@ -96,7 +96,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@@TITLE@@ — Morgan Bennett</title>
+    <title>@@TITLE@@ ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Morgan Bennett</title>
     <meta name="description" content="@@DESC@@">
     <meta name="theme-color" content="#f0ebe8">
     <link rel="canonical" href="@@URL@@">
@@ -107,7 +107,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
     <meta property="og:description" content="@@DESC@@">
     <meta property="og:url" content="@@URL@@">
     <meta property="og:image" content="@@SITE@@/banner.jpg">
-    <meta property="og:image:alt" content="Morgan Bennett — developer blog">
+    <meta property="og:image:alt" content="Morgan Bennett ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â developer blog">
     <meta property="article:published_time" content="@@DATE_ISO@@">
     <meta property="article:author" content="Morgan Bennett">
     <meta name="twitter:card" content="summary_large_image">
@@ -132,9 +132,9 @@ POST_TEMPLATE = """<!DOCTYPE html>
         <a href="/" class="brand">Morgan Bennett</a>
         <nav class="nav-links" id="navLinks" aria-label="Primary">
             <a href="/">Home</a>
-            <a href="/projects">Projects</a>
-            <a href="/blog" aria-current="page">Blog</a>
-            <a href="/#about">About</a>
+            <a href="/projects/">Projects</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/about/">About</a>
             <a href="/#contact">Contact</a>
         </nav>
         <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -145,7 +145,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
     <article class="article">
         <div class="container">
             <div class="article-inner">
-                <a class="back-link" href="/blog">← Back to blog</a>
+                <a class="back-link" href="/blog/">ÃƒÂ¢Ã¢â‚¬Â Ã‚Â Back to blog</a>
                 <div class="meta"><span>@@DATE_DISP@@</span><span class="tag">@@TAG@@</span><span>@@READ@@</span></div>
                 <h1>@@TITLE@@</h1>
                 <div class="article-body">
@@ -158,8 +158,8 @@ POST_TEMPLATE = """<!DOCTYPE html>
 
 <footer>
     <div class="container footer-grid">
-        <span>© <span id="year">2026</span> Morgan Bennett — mars_phobos</span>
-        <a href="#top">Back to top ↑</a>
+        <span>Ãƒâ€šÃ‚Â© <span id="year">2026</span> Morgan Bennett ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â mars_phobos</span>
+        <a href="#top">Back to top ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬Ëœ</a>
     </div>
 </footer>
 
@@ -204,7 +204,7 @@ def insert_blog_row(title, desc, slug, date_disp, tag):
         '                        <h3>' + esc(title) + '</h3>\n'
         '                        <p>' + esc(desc) + '</p>\n'
         '                    </div>\n'
-        '                    <span class="post-arrow">↗</span>\n'
+        '                    <span class="post-arrow">ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â€</span>\n'
         '                </a>\n'
     )
     anchor = "<!-- POST: duplicate this block + the matching post page for each new entry -->"
@@ -295,13 +295,13 @@ def index():
     return PAGE.replace("@@BRANCH@@", esc(get_branch())) \
                .replace("@@TODAY@@", datetime.date.today().isoformat()) \
                .replace("@@MDWARN@@", "" if md_lib else
-                        "Markdown library not found — run  pip install markdown  for proper formatting.")
+                        "Markdown library not found ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â run  pip install markdown  for proper formatting.")
 
 # ---------------------------------------------------------------- UI page
 PAGE = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>New post · marsphobos</title>
+<title>New post Ãƒâ€šÃ‚Â· marsphobos</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
 <style>
   :root{--paper:#f0ebe8;--ink:#141820;--accent:#c0603a;--line:rgba(20,24,32,0.14);}
@@ -347,7 +347,7 @@ PAGE = """<!DOCTYPE html>
     </div>
     <label>Summary (one line, shown on the blog list)</label>
     <textarea id="summary" rows="2" placeholder="A short hook describing the post."></textarea>
-    <label>Body — Markdown ( ## heading · - list · &gt; quote · `code` · [text](url) )</label>
+    <label>Body ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Markdown ( ## heading Ãƒâ€šÃ‚Â· - list Ãƒâ€šÃ‚Â· &gt; quote Ãƒâ€šÃ‚Â· `code` Ãƒâ€šÃ‚Â· [text](url) )</label>
     <textarea id="body" placeholder="Write your post here in Markdown..."></textarea>
     <div class="warn">@@MDWARN@@</div>
     <div class="bar">
@@ -373,7 +373,7 @@ function render(){
   $("readtime").placeholder = Math.max(1, Math.round(words/200)) + " min read";
   $("pvTitle").textContent = $("title").value || "Untitled";
   const d = $("date").value, tag = $("tag").value, rt = $("readtime").value || $("readtime").placeholder;
-  $("pvMeta").textContent = [d, tag, rt].filter(Boolean).join("  ·  ");
+  $("pvMeta").textContent = [d, tag, rt].filter(Boolean).join("  Ãƒâ€šÃ‚Â·  ");
   $("pvBody").innerHTML = marked.parse($("body").value || "");
 }
 ["title","slug","tag","date","readtime","body"].forEach(id => $(id).addEventListener("input", render));
@@ -387,9 +387,9 @@ $("saveBtn").onclick = async () => {
       date:$("date").value, readtime:$("readtime").value, summary:$("summary").value, body:$("body").value};
     const r = await fetch("/save",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
     const j = await r.json();
-    if(j.ok) show("ok", "✓ " + j.message + "\\n\\nPreview locally with a server, then click Publish when ready.");
-    else show("err", "✗ " + j.error);
-  }catch(e){ show("err", "✗ " + e); }
+    if(j.ok) show("ok", "ÃƒÂ¢Ã…â€œÃ¢â‚¬Å“ " + j.message + "\\n\\nPreview locally with a server, then click Publish when ready.");
+    else show("err", "ÃƒÂ¢Ã…â€œÃ¢â‚¬â€ " + j.error);
+  }catch(e){ show("err", "ÃƒÂ¢Ã…â€œÃ¢â‚¬â€ " + e); }
   $("saveBtn").disabled = false;
 };
 $("pubBtn").onclick = async () => {
@@ -399,8 +399,8 @@ $("pubBtn").onclick = async () => {
     const msg = "Add blog post: " + ($("title").value || "untitled");
     const r = await fetch("/publish",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:msg})});
     const j = await r.json();
-    show("log", (j.ok ? "✓ Pushed.\\n\\n" : "✗ Git error.\\n\\n") + j.log);
-  }catch(e){ show("err", "✗ " + e); }
+    show("log", (j.ok ? "ÃƒÂ¢Ã…â€œÃ¢â‚¬Å“ Pushed.\\n\\n" : "ÃƒÂ¢Ã…â€œÃ¢â‚¬â€ Git error.\\n\\n") + j.log);
+  }catch(e){ show("err", "ÃƒÂ¢Ã…â€œÃ¢â‚¬â€ " + e); }
   $("pubBtn").disabled = false;
 };
 </script>
@@ -408,6 +408,6 @@ $("pubBtn").onclick = async () => {
 """
 
 if __name__ == "__main__":
-    print("\n  Blog tool running →  http://localhost:5000")
+    print("\n  Blog tool running ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢  http://localhost:5000")
     print(f"  Editing site at:    {SITE_ROOT}\n")
     app.run(port=5000, debug=False)

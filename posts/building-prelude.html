@@ -6,21 +6,21 @@
     <title>Building Prelude - Morgan Bennett</title>
     <meta name="description" content="How I pulled the music layer out of my apps into Prelude - a self-caching, rate-limited MusicBrainz gateway built on FastAPI, Postgres, Redis and Celery, shared across the whole stack.">
     <meta name="theme-color" content="#f0ebe8">
-    <link rel="canonical" href="https://marsphobos.com/posts/building-prelude.html">
+    <link rel="canonical" href="https://www.marsphobos.com/posts/building-prelude.html">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 
     <meta property="og:type" content="article">
     <meta property="og:title" content="Building Prelude: a shared music catalogue for the whole stack">
     <meta property="og:description" content="A self-caching, rate-limited MusicBrainz gateway built on FastAPI, Postgres, Redis and Celery - the invisible service my other apps run on.">
-    <meta property="og:url" content="https://marsphobos.com/posts/building-prelude.html">
-    <meta property="og:image" content="https://marsphobos.com/banner.jpg">
+    <meta property="og:url" content="https://www.marsphobos.com/posts/building-prelude.html">
+    <meta property="og:image" content="https://www.marsphobos.com/banner.jpg">
     <meta property="og:image:alt" content="Prelude - shared music catalogue service by Morgan Bennett">
     <meta property="article:published_time" content="2026-06-29">
     <meta property="article:author" content="Morgan Bennett">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Building Prelude: a shared music catalogue for the whole stack">
     <meta name="twitter:description" content="A self-caching, rate-limited MusicBrainz gateway built on FastAPI, Postgres, Redis and Celery.">
-    <meta name="twitter:image" content="https://marsphobos.com/banner.jpg">
+    <meta name="twitter:image" content="https://www.marsphobos.com/banner.jpg">
     <meta name="twitter:site" content="@mars_ph0b05">
 
     <script type="application/ld+json">
@@ -29,12 +29,12 @@
       "@type": "BlogPosting",
       "headline": "Building Prelude: a shared music catalogue for the whole stack",
       "description": "How I pulled the music layer out of my apps into Prelude - a self-caching, rate-limited MusicBrainz gateway built on FastAPI, Postgres, Redis and Celery.",
-      "image": "https://marsphobos.com/banner.jpg",
+      "image": "https://www.marsphobos.com/banner.jpg",
       "datePublished": "2026-06-29",
       "dateModified": "2026-06-29",
-      "url": "https://marsphobos.com/posts/building-prelude.html",
-      "mainEntityOfPage": "https://marsphobos.com/posts/building-prelude.html",
-      "author": { "@type": "Person", "name": "Morgan Bennett", "url": "https://marsphobos.com/" },
+      "url": "https://www.marsphobos.com/posts/building-prelude.html",
+      "mainEntityOfPage": "https://www.marsphobos.com/posts/building-prelude.html",
+      "author": { "@type": "Person", "name": "Morgan Bennett", "url": "https://www.marsphobos.com/" },
       "publisher": { "@type": "Person", "name": "Morgan Bennett" },
       "keywords": "Python, FastAPI, Postgres, Redis, Celery, caching, rate limiting, microservice, build log"
     }
@@ -49,13 +49,13 @@
 
 <header class="site-header" id="header">
     <div class="container nav">
-        <a href="../index.html" class="brand">Morgan Bennett</a>
+        <a href="/" class="brand">Morgan Bennett</a>
         <nav class="nav-links" id="navLinks" aria-label="Primary">
-            <a href="../index.html">Home</a>
-            <a href="../projects.html">Projects</a>
-            <a href="../blog.html" aria-current="page">Blog</a>
-            <a href="../index.html#about">About</a>
-            <a href="../index.html#contact">Contact</a>
+            <a href="/">Home</a>
+            <a href="/projects/">Projects</a>
+            <a href="/blog/" aria-current="page">Blog</a>
+            <a href="/about/">About</a>
+            <a href="/#contact">Contact</a>
         </nav>
         <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -65,7 +65,7 @@
     <article class="article">
         <div class="container">
             <div class="article-inner">
-                <a class="back-link" href="../blog.html">&larr; Back to blog</a>
+                <a class="back-link" href="/blog/">&larr; Back to blog</a>
                 <div class="meta"><span>29 Jun 2026</span><span class="tag">Project</span><span>7 min read</span></div>
                 <h1>Building Prelude: a shared music catalogue for the whole stack</h1>
                 <div class="article-body">
@@ -108,6 +108,7 @@
                     <blockquote>It's the only piece of the stack a user never sees - and the one that makes everything else fast.</blockquote>
 
                     <p>It's also the most infrastructure-heavy thing I've built: a self-filling cache, a rate-limited job queue, de-duplication, a negative cache, a multi-service deployment behind a private network. None of it shows up on screen, which is exactly the point. The best infrastructure is the kind you forget is running.</p>
+                    <p>For the finished project overview, read the <a href="/projects/prelude/">Prelude case study</a>.</p>
                 </div>
             </div>
         </div>
@@ -117,7 +118,7 @@
 <footer>
     <div class="container footer-grid">
         <span>&copy; <span id="year">2026</span> Morgan Bennett - mars_phobos</span>
-        <a href="#top">Back to top &uarr;</a>
+        <a href="#top">Back to top</a>
     </div>
 </footer>
 
